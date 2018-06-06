@@ -1,0 +1,4 @@
+[build]
+  environment = { CI = "true" }
+  publish = "build"
+  command = "npm test && npm run build"

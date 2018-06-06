@@ -2,6 +2,9 @@
   "name": "gitnotes",
   "version": "0.1.0",
   "private": true,
+  "description": "A git backed note taking application",
+  "bugs": "https://gitlab.com/mdaffin/gitnotes/issues",
+  "license": "GPL-2.0",
   "dependencies": {
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
