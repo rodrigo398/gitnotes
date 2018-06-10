@@ -13,8 +13,8 @@ export default () => (
     <div>
       <Header/>
       <Switch>
-        <Route path="/" exact={true} component={LoginPage}/>
-        <Route path="/dashboard" component={Dashboard}/>
+        <Route path="/" exact={true}  component={Dashboard}/>
+        <Route path="/login" component={LoginPage}/>
         <Route component={PageNotFound} />
       </Switch>
     </div>
