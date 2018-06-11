@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import { routerMiddleware, routerReducer } from "react-router-redux";
 import thunk from "redux-thunk";
 import createHistory from "history/createBrowserHistory";
-import authorization from "./authorization";
+import authentication from "./authentication";
 import user from "./user";
 import technical from "./technical";
 
@@ -14,7 +14,7 @@ const middleware = [thunk, routerMiddleware(history)];
 
 const rootReducer = combineReducers({
   router: routerReducer,
-  authorization,
+  authentication,
   user,
   technical
 });

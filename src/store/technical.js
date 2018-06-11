@@ -4,6 +4,6 @@ const initialState = {
   gitlabAccessConfiguration: configuration.gitlab
 };
 
-export default (state = initialState, { type, payload }) => {
+export default (state = initialState, action) => {
   return state;
 };

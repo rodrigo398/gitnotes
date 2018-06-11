@@ -1,43 +1,42 @@
 import React from "react";
-import UsersService from "../services/Users/usersService";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import {
+  authenticateUser,
+  getUserAuthenticationStatus,
+  logoutUser
+} from "../actions/authentication";
 
 class Login extends React.Component {
-  state = {
-    isAuthenticated: false
-  };
-
-  async componentDidMount() {
-    if (!this.props.authentication.hasValidOAuthResponse()) return;
-
-    this.props.authentication.initializeSession();
-
-    const isAuthenticated = this.props.authentication.isAuthenticated();
-
-    this.setState({
-      isAuthenticated
-    });
-
-    if (isAuthenticated) {
-      await this._getAuthenticatedUserInfo();
-    }
-  }
-
-  async _getAuthenticatedUserInfo() {
-    const userService = new UsersService();
-    await userService.getCurrentAuthenticatedUserProfile();
+  componentDidMount() {
+    this.props.checkAuthentication();
   }
 
   _authenticate() {
-    this.props.authentication.login({
-      returnUrl: `${window.location.origin}/login`,
+    this.props.login({
+      callbackUrl: `${window.location.origin}/login`,
       stateHash: new Date().getTime()
     });
   }
 
+  _logout() {
+    this.props.logout();
+  }
+
   _renderAuthenticationState() {
-    if (this.state.isAuthenticated) {
-      return <h2>Hello sir, you are authenticated</h2>;
-    } else {
+    if (this.props.isAuthenticated) {
+      return (
+        <div>
+          <h2>Hello {this.props.name}, you are authenticated</h2>
+          {this.props.avatarUrl && (
+            <img src={this.props.avatarUrl} alt={this.props.name} />
+          )}
+          <button onClick={() => this._logout()}> Logout</button>
+        </div>
+      );
+    } else if (this.props.authenticationInProgress) {
+      return <h2>Authentication in progress</h2>;
+    } else
       return (
         <div>
           <h2>You are not authenticated</h2>
@@ -46,7 +45,6 @@ class Login extends React.Component {
           </button>
         </div>
       );
-    }
   }
 
   render() {
@@ -59,4 +57,32 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+function mapStateToProps({ authentication, user: { name, avatarUrl } }) {
+  return {
+    isAuthenticated: authentication.isAuthenticated,
+    name,
+    avatarUrl
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    login: ({ oAuthProvider, callbackUrl, stateHash }) =>
+      dispatch(
+        authenticateUser({
+          oAuthProvider,
+          callbackUrl,
+          stateHash
+        })
+      ),
+    logout: () => dispatch(logoutUser()),
+    checkAuthentication: () => dispatch(getUserAuthenticationStatus())
+  };
+}
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Login)
+);

@@ -1,8 +1,24 @@
+import { REQUEST_USER_DATA, SET_USER_DATA } from "../actions/user";
+
 const initialState = {
-  userName: undefined,
-  userLogo: undefined
+  name: undefined,
+  avatarUrl: undefined,
+  requestInProgress: undefined
 };
 
-export default (state = initialState, { type, payload }) => {
-  return state;
+export default (state = initialState, action) => {
+  switch (action.type) {
+    case REQUEST_USER_DATA:
+      return {
+        requestInProgress: true
+      };
+    case SET_USER_DATA:
+      return {
+        name: action.payload.name,
+        avatarUrl: action.payload.avatarUrl,
+        requestInProgress: false
+      };
+    default:
+      return state;
+  }
 };
