@@ -19,6 +19,7 @@ class AuthenticationService {
 
   logout = () => {
     localStorage.removeItem(ACCESS_TOKEN_KEY);
+    localStorage.removeItem(EXPIRES_AT_KEY);
   };
 
   isAuthenticated = () => {
@@ -49,7 +50,7 @@ class AuthenticationService {
           key: decodeURIComponent(arr[0]),
           value: decodeURIComponent(arr[1])
         }))
-        //transform to a map (object)
+        //transform to a map
         .reduce(function(map, { key, value }) {
           map[key] = value;
           return map;
@@ -62,7 +63,6 @@ class AuthenticationService {
 
   initializeSession = () => {
     const { access_token, expires_in } = this.parseOAuthResult();
-
     localStorage.setItem(ACCESS_TOKEN_KEY, access_token);
 
     let expiresAt = JSON.stringify(

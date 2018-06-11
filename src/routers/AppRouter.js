@@ -5,8 +5,14 @@ import Header from "../components/Header";
 import LoginPage from "../components/LoginPage";
 import Dashboard from "../components/Dashboard";
 import PageNotFound from "../components/PageNotFound";
+import AuthenticationService from "../services/Authentication/authenticationService";
+import configuration from "../config";
 
 export const history = createHistory();
+
+const authentication = new AuthenticationService({
+  gitnotesApplicationId: configuration.gitlab.gitnotesApplicationId
+});
 
 export default () => (
   <Router history={history}>
@@ -14,7 +20,10 @@ export default () => (
       <Header />
       <Switch>
         <Route path="/" exact={true} component={Dashboard} />
-        <Route path="/login" component={LoginPage} />
+        <Route
+          path="/login"
+          render={props => <LoginPage authentication={authentication} />}
+        />
         <Route component={PageNotFound} />
       </Switch>
     </div>
