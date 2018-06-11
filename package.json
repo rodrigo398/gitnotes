@@ -3,17 +3,26 @@
   "version": "0.1.0",
   "private": true,
   "description": "A git backed note taking application",
-  "bugs": "https://gitlab.com/mdaffin/gitnotes/issues",
+  "bugs": "https://gitlab.com/skillcamp/gitnotes/issues",
   "license": "GPL-2.0",
   "dependencies": {
+    "history": "^4.7.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "precommit": "pretty-quick --staged"
+  },
+  "devDependencies": {
+    "eslint-plugin-prettier": "^2.6.0",
+    "husky": "^0.14.3",
+    "prettier": "^1.13.4",
+    "pretty-quick": "^1.6.0"
   }
 }
