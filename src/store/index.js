@@ -4,7 +4,6 @@ import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
 import authentication from "./authentication";
 import user from "./user";
-import technical from "./technical";
 
 export const history = createBrowserHistory();
 
@@ -12,8 +11,7 @@ const initialState = {};
 
 const rootReducer = combineReducers({
   authentication,
-  user,
-  technical
+  user
 });
 
 const enhancers = [];
