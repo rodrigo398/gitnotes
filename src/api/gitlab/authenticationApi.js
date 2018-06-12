@@ -35,64 +35,58 @@ const parseOAuthResult = () => {
   );
 };
 
-class AuthenticationApi {
-  _isAuthenticated() {
-    const expiresAt = JSON.parse(localStorage.getItem(EXPIRES_AT_KEY));
-    return (
-      localStorage.getItem(ACCESS_TOKEN_KEY) !== undefined &&
-      new Date().getTime() < expiresAt
-    );
+const isAuthenticated = () => {
+  const expiresAt = JSON.parse(localStorage.getItem(EXPIRES_AT_KEY));
+  return (
+    localStorage.getItem(ACCESS_TOKEN_KEY) !== undefined &&
+    new Date().getTime() < expiresAt
+  );
+};
+
+const getAccessTokenData = () => ({
+  accessToken: localStorage.getItem(ACCESS_TOKEN_KEY),
+  tokenExpiration: localStorage.getItem(EXPIRES_AT_KEY)
+});
+
+const hasValidOAuthResponse = () =>
+  window.location.hash.indexOf(ACCESS_TOKEN_KEY) > -1 && isOAuthResultValid();
+
+const isOAuthResultValid = () => {
+  return parseOAuthResult()["state"] === localStorage.getItem(STATE_HASH_KEY);
+};
+
+const initializeSession = () => {
+  const { access_token, expires_in } = parseOAuthResult();
+  localStorage.setItem(ACCESS_TOKEN_KEY, access_token);
+
+  let expiresAt = JSON.stringify(
+    (expires_in || 3600) * 1000 + new Date().getTime()
+  );
+  localStorage.setItem(EXPIRES_AT_KEY, expiresAt);
+};
+
+const getAuthenticationData = () => {
+  if (hasValidOAuthResponse()) {
+    initializeSession();
   }
-
-  _getAccessTokenData() {
-    return {
-      accessToken: localStorage.getItem(ACCESS_TOKEN_KEY),
-      tokenExpiration: localStorage.getItem(EXPIRES_AT_KEY)
-    };
+  if (isAuthenticated()) {
+    return getAccessTokenData();
   }
+};
 
-  _hasValidOAuthResponse() {
-    return (
-      window.location.hash.indexOf(ACCESS_TOKEN_KEY) > -1 &&
-      this._isOAuthResultValid()
-    );
-  }
+const initateAuthentication = ({ callbackUrl, stateHash }) => {
+  const clientId = configuration.gitlab.gitnotesApplicationId;
+  localStorage.setItem(STATE_HASH_KEY, stateHash);
+  window.location.replace(buildOAuthUrl({ clientId, callbackUrl, stateHash }));
+};
 
-  _isOAuthResultValid() {
-    return parseOAuthResult()["state"] === localStorage.getItem(STATE_HASH_KEY);
-  }
+const clearAuthentication = () => {
+  localStorage.removeItem(ACCESS_TOKEN_KEY);
+  localStorage.removeItem(EXPIRES_AT_KEY);
+};
 
-  _initializeSession() {
-    const { access_token, expires_in } = parseOAuthResult();
-    localStorage.setItem(ACCESS_TOKEN_KEY, access_token);
-
-    let expiresAt = JSON.stringify(
-      (expires_in || 3600) * 1000 + new Date().getTime()
-    );
-    localStorage.setItem(EXPIRES_AT_KEY, expiresAt);
-  }
-
-  getAuthenticationData() {
-    if (this._hasValidOAuthResponse()) {
-      this._initializeSession();
-    }
-    if (this._isAuthenticated()) {
-      return this._getAccessTokenData();
-    }
-  }
-
-  initateAuthentication({ callbackUrl, stateHash }) {
-    const clientId = configuration.gitlab.gitnotesApplicationId;
-    localStorage.setItem(STATE_HASH_KEY, stateHash);
-    window.location.replace(
-      buildOAuthUrl({ clientId, callbackUrl, stateHash })
-    );
-  }
-
-  clearAuthentication() {
-    localStorage.removeItem(ACCESS_TOKEN_KEY);
-    localStorage.removeItem(EXPIRES_AT_KEY);
-  }
-}
-
-export default new AuthenticationApi();
+export default {
+  clearAuthentication,
+  initateAuthentication,
+  getAuthenticationData
+};
