@@ -3,7 +3,7 @@
 When contributing to this repository, please first discuss the change you wish to make via
 the issue board, or slack channel. If you have a feature request, bug to report or idea, feel
 free to open an issue on the [Gitlab issue board](https://gitlab.com/skillcamp/gitnotes/issues).
-Our [Slack channel](https://join.slack.com/t/gitnotes/shared_invite/enQtMzc2MzMyNDg2MjkzLTU5OTg5NGUxYTQ3NWQxNzY2ZTdmMTc0M2MwOWY2ODFhMjM3M2RmNzUxM2I2ZWIyZjk4ODkzMDU4MjcyNTRjODI)
+Our [Slack channel](https://join.slack.com/t/skillcamp-io/shared_invite/enQtMzgxMjM5NjU1OTU4LTIzNDIzZTA3YTY0ZTY1NWVmMDUxZDllZjVmZjNiZDRiZTdhN2RhZjhhZTI5MGQxNzY1ZDlhNTAxYTlmNWRkYzA)
 is great for asking questions, collaborating on ideas and discussing issues.
 
 Please note we have a code of conduct, please follow it in all your interactions with the project.
