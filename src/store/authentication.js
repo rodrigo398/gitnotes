@@ -1,4 +1,4 @@
-import { SET_ANTHENTICATION_STATUS } from "../actions/authentication";
+import { SET_AUTHENTICATION_STATUS } from "../actions/authentication";
 
 const initialState = {
   isAuthenticated: false,
@@ -8,7 +8,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_ANTHENTICATION_STATUS:
+    case SET_AUTHENTICATION_STATUS:
       const { payload } = action;
       return {
         ...state,

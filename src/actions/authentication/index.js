@@ -1,12 +1,12 @@
 import { AuthenticationApi } from "../../api/gitlab";
 import { getCurrentUserData } from "../user";
 
-const SET_ANTHENTICATION_STATUS = "SET_ANTHENTICATION_STATUS";
+const SET_AUTHENTICATION_STATUS = "SET_AUTHENTICATION_STATUS";
 
 const authenticateUser = ({ callbackUrl, stateHash }) => {
   AuthenticationApi.initateAuthentication({ callbackUrl, stateHash });
   return {
-    type: SET_ANTHENTICATION_STATUS,
+    type: SET_AUTHENTICATION_STATUS,
     payload: {
       authenticationInProgress: true,
       isAuthenticated: false,
@@ -22,7 +22,7 @@ const getUserAuthenticationStatus = () => {
     if (authenticationData) {
       const { accessToken, tokenExpiration } = authenticationData;
       dispatch({
-        type: SET_ANTHENTICATION_STATUS,
+        type: SET_AUTHENTICATION_STATUS,
         payload: {
           isAuthenticated: true,
           authenticationInProgress: false,
@@ -33,7 +33,7 @@ const getUserAuthenticationStatus = () => {
       dispatch(getCurrentUserData());
     } else {
       dispatch({
-        type: SET_ANTHENTICATION_STATUS,
+        type: SET_AUTHENTICATION_STATUS,
         payload: {
           isAuthenticated: false,
           authenticationInProgress: false,
@@ -48,7 +48,7 @@ const getUserAuthenticationStatus = () => {
 const logoutUser = () => {
   AuthenticationApi.clearAuthentication();
   return {
-    type: SET_ANTHENTICATION_STATUS,
+    type: SET_AUTHENTICATION_STATUS,
     payload: {
       isAuthenticated: false,
       authenticationInProgress: false,
@@ -62,5 +62,5 @@ export {
   authenticateUser,
   getUserAuthenticationStatus,
   logoutUser,
-  SET_ANTHENTICATION_STATUS
+  SET_AUTHENTICATION_STATUS
 };
