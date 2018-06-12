@@ -30,7 +30,7 @@ const getUserAuthenticationStatus = () => {
           tokenExpiration
         }
       });
-      dispatch(getCurrentUserData());
+      dispatch(getCurrentUserData(accessToken));
     } else {
       dispatch({
         type: SET_AUTHENTICATION_STATUS,
