@@ -5,7 +5,7 @@ import LoginPage from "../components/LoginPage";
 import Dashboard from "../components/Dashboard";
 import PageNotFound from "../components/PageNotFound";
 
-export default (
+export default () => (
   <React.Fragment>
     <Header />
     <Switch>

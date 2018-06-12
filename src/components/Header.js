@@ -1,6 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default () => (
+const Header = ({ isAuthenticated, name, avatarUrl }) => (
   <div
     style={{
       width: "100%",
@@ -13,5 +16,17 @@ export default () => (
     }}
   >
     <h1>GitNotes</h1>
+    {isAuthenticated && <div>{name}</div>}
+    {!isAuthenticated && <Link to="/login">Login</Link>}
   </div>
 );
+
+const mapStateToProps = ({ authentication, user: { name, avatarUrl } }) => {
+  return {
+    isAuthenticated: authentication.isAuthenticated,
+    name,
+    avatarUrl
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(Header));

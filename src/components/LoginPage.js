@@ -57,28 +57,24 @@ class Login extends React.Component {
   }
 }
 
-function mapStateToProps({ authentication, user: { name, avatarUrl } }) {
-  return {
-    isAuthenticated: authentication.isAuthenticated,
-    name,
-    avatarUrl
-  };
-}
+const mapStateToProps = ({ authentication, user: { name, avatarUrl } }) => ({
+  isAuthenticated: authentication.isAuthenticated,
+  name,
+  avatarUrl
+});
 
-function mapDispatchToProps(dispatch) {
-  return {
-    login: ({ oAuthProvider, callbackUrl, stateHash }) =>
-      dispatch(
-        authenticateUser({
-          oAuthProvider,
-          callbackUrl,
-          stateHash
-        })
-      ),
-    logout: () => dispatch(logoutUser()),
-    checkAuthentication: () => dispatch(getUserAuthenticationStatus())
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  login: ({ oAuthProvider, callbackUrl, stateHash }) =>
+    dispatch(
+      authenticateUser({
+        oAuthProvider,
+        callbackUrl,
+        stateHash
+      })
+    ),
+  logout: () => dispatch(logoutUser()),
+  checkAuthentication: () => dispatch(getUserAuthenticationStatus())
+});
 
 export default withRouter(
   connect(

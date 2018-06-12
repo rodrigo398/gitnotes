@@ -3,15 +3,14 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 import store, { history } from "./store";
-import AppRouter from "./routers/AppRouter";
+import Routes from "./routes";
 import registerServiceWorker from "./registerServiceWorker";
-
 import "./index.css";
 
 const AppWithStore = () => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <AppRouter />
+      <Routes />
     </ConnectedRouter>
   </Provider>
 );
