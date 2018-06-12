@@ -2,3 +2,6 @@
   environment = { CI = "true" }
   publish = "build"
   command = "npm test && npm run build"
+
+[context.production.environment]
+  REACT_APP_GITNOTES_GITLAB_APPLICATION_ID = "790a8fc4005231a5cb550c430c4b4963440e47461cdbdce2354406d3bb9d3242"
