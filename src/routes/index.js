@@ -5,13 +5,13 @@ import LoginPage from "../components/LoginPage";
 import Dashboard from "../components/Dashboard";
 import PageNotFound from "../components/PageNotFound";
 
-export default () => (
-  <div>
+export default (
+  <React.Fragment>
     <Header />
     <Switch>
       <Route path="/" exact={true} component={Dashboard} />
       <Route path="/login" render={props => <LoginPage />} />
       <Route component={PageNotFound} />
     </Switch>
-  </div>
+  </React.Fragment>
 );
