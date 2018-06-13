@@ -2,8 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { logoutUser } from "../actions/authentication";
 
-const Header = ({ isAuthenticated, name, avatarUrl }) => (
+const Header = ({ logout, isAuthenticated, name, avatarUrl }) => (
   <div
     style={{
       width: "100%",
@@ -15,8 +16,30 @@ const Header = ({ isAuthenticated, name, avatarUrl }) => (
       alignItems: "center"
     }}
   >
-    <h1>GitNotes</h1>
-    {isAuthenticated && <div>{name}</div>}
+    <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+      <h1>GitNotes</h1>
+    </Link>
+    {isAuthenticated && (
+      <div
+        style={{
+          marginLeft: "auto",
+          display: "flex",
+          alignItems: "center"
+        }}
+      >
+        <input type="text" />
+        <Link to="/settings" style={{ color: "white" }}>
+          Settings
+        </Link>
+        <button onClick={() => logout()}> Logout</button>
+        <img
+          style={{ height: "30px", borderRadius: "50%" }}
+          src={avatarUrl}
+          alt={name}
+        />
+        {name}
+      </div>
+    )}
     {!isAuthenticated && <Link to="/login">Login</Link>}
   </div>
 );
@@ -29,4 +52,12 @@ const mapStateToProps = ({ authentication, user: { name, avatarUrl } }) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(Header));
+const mapDispatchToProps = dispatch => ({
+  logout: () => dispatch(logoutUser())
+});
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Header)
+);
