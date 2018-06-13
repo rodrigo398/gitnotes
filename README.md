@@ -59,7 +59,7 @@ full list of [contributors].
 
 ## License
 
-This project is licensed under the GPLv2 License - see the [LICENSE.md] file
+This project is licensed under the GPLv2 License - see the [LICENSE] file
 for details.
 
-[license.md]: LICENSE.md
+[license]: LICENSE
