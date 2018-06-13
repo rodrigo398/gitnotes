@@ -1,10 +1,15 @@
 # Contributing
 
-When contributing to this repository, please first discuss the change you wish to make via
+When contributing to this project, please consider discussing the changes you wish to make via
 the issue board, or slack channel. If you have a feature request, bug to report or idea, feel
 free to open an issue on the [Gitlab issue board](https://gitlab.com/skillcamp/gitnotes/issues).
 Our [Slack channel](https://join.slack.com/t/skillcamp-io/shared_invite/enQtMzgxMjM5NjU1OTU4LTIzNDIzZTA3YTY0ZTY1NWVmMDUxZDllZjVmZjNiZDRiZTdhN2RhZjhhZTI5MGQxNzY1ZDlhNTAxYTlmNWRkYzA)
 is great for asking questions, collaborating on ideas and discussing issues.
+
+##### Or
+
+If you would like to work with this project independently, you are welcome to fork the repository, then
+make merge requests when you are ready.
 
 Please note we have a code of conduct, please follow it in all your interactions with the project.
 
@@ -21,12 +26,12 @@ Please note we have a code of conduct, please follow it in all your interactions
     `fix:`, `doc:`, `chore:`, `feature:`, for example. This makes everything a bit clearer in the git history.
 
 4.  When you are ready to get feedback on your branch, create a merge request on Gitlab.
-    `WIP:` (work in progress) should be added to the start of your initial merge request title.
-    This will prevent the branch from accidentally being merged, until the code has been discussed
-    and reviewed.
 
-5.  Finally, once your code has been approved, remove the `WIP:` tag. You can then merge your branch  
-    into `master`.
+    > If you would like feedback on a branch you are working on,
+    > `WIP:` (work in progress) can be added to the start of your merge request title.
+
+5.  Finally, once your code has been reviewed and approved, you can then merge your branch  
+    into `master` !
 
 ## Style Guide
 

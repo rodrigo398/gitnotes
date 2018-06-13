@@ -1,10 +1,10 @@
 # GitNotes
 
-[GitNotes current deployment v0.0.1](https://gitnotes.netlify.com/)
+[GitNotes current deployment](https://gitnotes.netlify.com/)
 
 ## About
 
-GitNotes is a git backed, version controlled notes taking application. The application will use
+GitNotes is a web-based note taking application, backed by git. The application will use
 API's of some of the largest git hosting sites to interact with your own repository. For a [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product),
 we will focus on [GitLab's APIs](https://docs.gitlab.com/ee/api/), but will expand to GitHub and BitBucket in the future.
 We plan to use Oauth2 authentication from these providers, which means we will not store any user data or have a need for a backend.
