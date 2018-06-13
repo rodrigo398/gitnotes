@@ -2,7 +2,7 @@
   "name": "gitnotes",
   "version": "0.1.0",
   "private": true,
-  "description": "A git backed note taking application",
+  "description": "A web-based note-taking application backed by git",
   "bugs": "https://gitlab.com/skillcamp/gitnotes/issues",
   "license": "GPL-2.0",
   "dependencies": {
