@@ -6,9 +6,7 @@ free to open an issue on the [Gitlab issue board](https://gitlab.com/skillcamp/g
 Our [Slack channel](https://join.slack.com/t/skillcamp-io/shared_invite/enQtMzgxMjM5NjU1OTU4LTIzNDIzZTA3YTY0ZTY1NWVmMDUxZDllZjVmZjNiZDRiZTdhN2RhZjhhZTI5MGQxNzY1ZDlhNTAxYTlmNWRkYzA)
 is great for asking questions, collaborating on ideas and discussing issues.
 
-##### Or
-
-If you would like to work with this project independently, you are welcome to fork the repository, then
+Or if you would like to work with this project independently, you are welcome to fork the repository, then
 make merge requests when you are ready.
 
 Please note we have a code of conduct, please follow it in all your interactions with the project.
