@@ -40,7 +40,7 @@ ideas, please don't hesitate. We would love to hear from you. Check out our
 touch with us is our [Slack Channel]. If you want to see what we have planned
 or what you can do to contribute, check out the [project's issue board].
 
-[contributing guide]: docs/CONTRIBUTING.md
+[contributing guide]: CONTRIBUTING.md
 [slack channel]: https://join.slack.com/t/skillcamp-io/shared_invite/enQtMzgxMjM5NjU1OTU4LTIzNDIzZTA3YTY0ZTY1NWVmMDUxZDllZjVmZjNiZDRiZTdhN2RhZjhhZTI5MGQxNzY1ZDlhNTAxYTlmNWRkYzA
 [project's issue board]: https://gitlab.com/skillcamp/gitnotes/issues/
 
