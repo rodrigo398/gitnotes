@@ -8,7 +8,6 @@ const getCurrentUserData = accessToken => {
     });
 
     const userData = await UsersApi.getCurrentlyAuthenticatedUser(accessToken);
-    console.log(userData);
     dispatch({
       type: SET_USER_DATA,
       payload: {
