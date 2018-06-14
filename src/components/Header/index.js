@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { logoutUser } from "../../actions/authentication";
 import SearchBar from "./SearchBar";
 import UserMenu from "./UserMenu";
+import { spin } from "../../styles/animations";
 const settingsIcon = require("../../images/settings.svg");
 const arrowDownIcon = require("../../images/arrow-down.svg");
 
@@ -64,16 +65,7 @@ const SettingsIcon = styled.img`
   background-color: transparent;
 
   &:hover {
-    animation: spin 2s infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+    animation: ${spin} 2s infinite;
   }
 `;
 

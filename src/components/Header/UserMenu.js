@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { moveInRight } from "../../styles/animations";
 
 const MenuWrapper = styled.div`
   width: 200px;
@@ -15,18 +16,7 @@ const MenuWrapper = styled.div`
   top: 55px;
   right: 14px;
   z-index: 100;
-  animation: moveInRight 200ms ease;
-
-  @keyframes moveInRight {
-    0% {
-      opacity: 0;
-      transform: translateX(-100px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
+  animation: ${moveInRight} 200ms ease;
 `;
 
 const PointerWrapper = styled.div`
