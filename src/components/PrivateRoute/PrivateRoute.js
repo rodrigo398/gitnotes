@@ -4,17 +4,14 @@ import { withRouter } from "react-router-dom";
 
 import { Route, Redirect } from "react-router-dom";
 
-const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
-  console.log(isAuthenticated);
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        isAuthenticated ? <Component {...props} /> : <Redirect to="/login" />
-      }
-    />
-  );
-};
+const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      isAuthenticated ? <Component {...props} /> : <Redirect to="/login" />
+    }
+  />
+);
 
 const mapStateToProps = ({ authentication }) => {
   return {
