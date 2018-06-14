@@ -118,12 +118,12 @@ class Header extends React.Component {
   };
 
   toggleMenu = () => {
-    this.setState(prevState => ({ userMenu: !prevState.userMenu }));
+    this.setState(prevState => ({ showUserMenu: !prevState.showUserMenu }));
   };
 
   render() {
     const { logout, isAuthenticated, name, avatarUrl } = this.props;
-    const { userMenu } = this.state;
+    const { showUserMenu } = this.state;
     return (
       <Wrapper>
         <GitNotesLogo to="/">
@@ -142,7 +142,7 @@ class Header extends React.Component {
               <User name="userMenu" onClick={this.toggleMenu}>
                 <img className="avatar" src={avatarUrl} alt={name} />
                 <img className="arrow" src={arrowDownIcon} alt="arrow-down" />
-                {userMenu && (
+                {showUserMenu && (
                   <UserMenu
                     name={name}
                     logout={logout}

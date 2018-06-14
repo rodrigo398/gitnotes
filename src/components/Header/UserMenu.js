@@ -62,34 +62,46 @@ const Logout = styled(MenuItem)`
 
 class UserMenu extends React.Component {
   componentDidMount() {
-    document.body.addEventListener("click", this.props.toggleMenu);
+    document.addEventListener("mousedown", this.handleClickOutside);
   }
 
   componentWillUnmount() {
-    document.body.removeEventListener("click", this.props.toggleMenu);
+    document.removeEventListener("mousedown", this.handleClickOutside);
   }
+
+  setWrapperRef = node => {
+    this.wrapperRef = node;
+  };
+
+  handleClickOutside = e => {
+    if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
+      this.props.toggleMenu();
+    }
+  };
 
   render() {
     const { name, logout } = this.props;
     return (
-      <MenuWrapper className="settings-menu">
-        <PointerWrapper>
-          <Pointer />
-        </PointerWrapper>
-        <ContentWrapper>
-          <p>{`Welcome, ${name}!`}</p>
-          <hr />
-          <MenuItem>Menu Item 1</MenuItem>
-          <MenuItem>Menu Item 2</MenuItem>
-          <Logout
-            onClick={() => {
-              logout();
-            }}
-          >
-            Logout
-          </Logout>
-        </ContentWrapper>
-      </MenuWrapper>
+      <div ref={this.setWrapperRef}>
+        <MenuWrapper className="settings-menu">
+          <PointerWrapper>
+            <Pointer />
+          </PointerWrapper>
+          <ContentWrapper>
+            <p>{`Welcome, ${name}!`}</p>
+            <hr />
+            <MenuItem>Menu Item 1</MenuItem>
+            <MenuItem>Menu Item 2</MenuItem>
+            <Logout
+              onClick={() => {
+                logout();
+              }}
+            >
+              Logout
+            </Logout>
+          </ContentWrapper>
+        </MenuWrapper>
+      </div>
     );
   }
 }
