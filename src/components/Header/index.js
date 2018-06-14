@@ -122,7 +122,7 @@ const Button = styled(Link)`
 
 class Header extends React.Component {
   state = {
-    userMenu: false
+    showUserMenu: false
   };
 
   toggleMenu = () => {
