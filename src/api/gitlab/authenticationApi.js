@@ -28,7 +28,7 @@ const parseOAuthResult = () => {
         value: decodeURIComponent(arr[1])
       }))
       //transform to a map
-      .reduce(function(map, { key, value }) {
+      .reduce((map, { key, value }) => {
         map[key] = value;
         return map;
       }, {})
