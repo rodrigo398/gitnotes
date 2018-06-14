@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import {
   authenticateUser,
   getUserAuthenticationStatus,
@@ -25,15 +25,7 @@ class Login extends React.Component {
 
   _renderAuthenticationState() {
     if (this.props.isAuthenticated) {
-      return (
-        <div>
-          <h2>Hello {this.props.name}, you are authenticated</h2>
-          {this.props.avatarUrl && (
-            <img src={this.props.avatarUrl} alt={this.props.name} />
-          )}
-          <button onClick={() => this._logout()}> Logout</button>
-        </div>
-      );
+      return <Redirect to="/" />;
     } else if (this.props.authenticationInProgress) {
       return <h2>Authentication in progress</h2>;
     } else

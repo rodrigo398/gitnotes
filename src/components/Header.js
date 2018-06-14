@@ -40,7 +40,6 @@ const Header = ({ logout, isAuthenticated, name, avatarUrl }) => (
         {name}
       </div>
     )}
-    {!isAuthenticated && <Link to="/login">Login</Link>}
   </div>
 );
 
