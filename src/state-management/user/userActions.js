@@ -1,5 +1,6 @@
 import { UsersApi } from "../../api/gitlab";
 import { REQUEST_USER_DATA, SET_USER_DATA } from "./userActionTypes";
+import { getCurrentAuthenticatedUserProjects } from "../projects/projectsActions";
 
 const getCurrentUserData = accessToken => {
   return async dispatch => {
@@ -14,6 +15,8 @@ const getCurrentUserData = accessToken => {
         ...userData
       }
     });
+
+    dispatch(getCurrentAuthenticatedUserProjects(accessToken));
   };
 };
 

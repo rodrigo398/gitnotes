@@ -5,6 +5,7 @@ import { createBrowserHistory } from "history";
 import { authenticationReducer } from "./authentication";
 import { userReducer } from "./user";
 import { addReduxDevTools } from "./utils/addReduxDevTools";
+import projectsReducer from "./projects/projectsReducer";
 
 export const history = createBrowserHistory();
 
@@ -12,7 +13,8 @@ const initialState = {};
 
 const rootReducer = combineReducers({
   authentication: authenticationReducer,
-  user: userReducer
+  user: userReducer,
+  projects: projectsReducer
 });
 
 const composedEnhancers = compose(
