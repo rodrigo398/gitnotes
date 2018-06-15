@@ -169,7 +169,7 @@ const mapStateToProps = ({ authentication, user: { name, avatarUrl } }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logoutUser)
+  logout: () => dispatch(logoutUser())
 });
 export default withRouter(
   connect(
