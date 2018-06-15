@@ -22,9 +22,22 @@ const getCurrentAuthenticatedUserProjects = accessToken => {
       );
 
       if (persistedProjects) {
-        synchronizedProjects = persistedProjects.filter(persistedProject =>
-          projects.some(p => p.id === persistedProject.id)
-        );
+        // TODO: optimisation
+        synchronizedProjects = synchronizedProjects.map(synchronizedProject => {
+          // TODO: should be O(1)
+          const match = persistedProjects.first(
+            p => synchronizedProject.id === p.id
+          );
+
+          if (match) {
+            return {
+              ...synchronizedProject,
+              editable: match.editable
+            };
+          } else {
+            return synchronizedProject;
+          }
+        });
       }
     } catch (error) {
       dispatch({

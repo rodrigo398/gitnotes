@@ -20,7 +20,6 @@ export default (state = initialState, action) => {
 
     case PROJECTS_SYNCHRONIZED: {
       const { synchronizedProjects } = action.payload;
-
       return {
         synchronizedProjects,
         lastUpdateTime: new Date().toUTCString(),
