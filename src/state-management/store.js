@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
 import { authenticationReducer } from "./authentication";
 import { userReducer } from "./user";
+import { addReduxDevTools } from "./utils/addReduxDevTools";
 
 export const history = createBrowserHistory();
 
@@ -14,18 +15,9 @@ const rootReducer = combineReducers({
   user: userReducer
 });
 
-const enhancers = [];
-if (process.env.NODE_ENV === "development") {
-  const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__;
-
-  if (typeof devToolsExtension === "function") {
-    enhancers.push(devToolsExtension());
-  }
-}
-
 const composedEnhancers = compose(
   applyMiddleware(routerMiddleware(history), thunk),
-  ...enhancers
+  ...addReduxDevTools([])
 );
 
 export default createStore(
