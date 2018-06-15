@@ -7,8 +7,8 @@ import SearchBar from "./SearchBar";
 import UserMenu from "./UserMenu";
 import { spin } from "../../styles/animations";
 import { logoutUser } from "../../state-management/authentication/authenticationActions";
-const settingsIcon = require("../../images/settings.svg");
-const arrowDownIcon = require("../../images/arrow-down.svg");
+import settingsIcon from "../../images/settings.svg";
+import arrowDownIcon from "../../images/arrow-down.svg";
 
 const Wrapper = styled.div`
   min-width: 640px;
