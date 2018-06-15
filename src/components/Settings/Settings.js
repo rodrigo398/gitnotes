@@ -13,7 +13,9 @@ const Settings = ({
     {synchronizedProjects && (
       <ul>
         {synchronizedProjects.map(project => (
-          <li key={project.id}>{project.name}</li>
+          <li onClick={() => toggleProjectEdition(project.id)} key={project.id}>
+            {project.name} {project.editable ? `[editable]` : `[non editable]`}
+          </li>
         ))}
       </ul>
     )}

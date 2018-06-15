@@ -23,21 +23,24 @@ const getCurrentAuthenticatedUserProjects = accessToken => {
 
       if (persistedProjects) {
         // TODO: optimisation
-        synchronizedProjects = synchronizedProjects.map(synchronizedProject => {
-          // TODO: should be O(1)
-          const match = persistedProjects.first(
-            p => synchronizedProject.id === p.id
-          );
 
-          if (match) {
-            return {
-              ...synchronizedProject,
-              editable: match.editable
-            };
-          } else {
-            return synchronizedProject;
+        synchronizedProjects = [...synchronizedProjects].map(
+          synchronizedProject => {
+            // TODO: should be O(1)
+            const match = persistedProjects.find(
+              p => synchronizedProject.id === p.id
+            );
+
+            if (match) {
+              return {
+                ...synchronizedProject,
+                editable: match.editable
+              };
+            } else {
+              return synchronizedProject;
+            }
           }
-        });
+        );
       }
     } catch (error) {
       dispatch({
@@ -72,7 +75,7 @@ const saveSynchronizedProjects = projects =>
 
 const toggleProject = (synchronizedProjects, projectId) => {
   return synchronizedProjects.map(project => {
-    if (project.projectId === projectId) {
+    if (project.id === projectId) {
       return {
         ...project,
         editable: !project.editable
@@ -88,7 +91,6 @@ const toggleProjectEdition = projectId => {
 
   if (synchronizedProjects) {
     const updatedProjects = toggleProject(synchronizedProjects, projectId);
-
     saveSynchronizedProjects(updatedProjects);
 
     return {
