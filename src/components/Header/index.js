@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { logoutUser } from "../../actions/authentication";
 import SearchBar from "./SearchBar";
 import UserMenu from "./UserMenu";
 import { spin } from "../../styles/animations";
+import { logoutUser } from "../../state-management/authentication/authenticationActions";
 const settingsIcon = require("../../images/settings.svg");
 const arrowDownIcon = require("../../images/arrow-down.svg");
 
@@ -169,7 +169,7 @@ const mapStateToProps = ({ authentication, user: { name, avatarUrl } }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logoutUser())
+  logout: () => dispatch(logoutUser)
 });
 export default withRouter(
   connect(
