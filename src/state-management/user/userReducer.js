@@ -1,4 +1,4 @@
-import { REQUEST_USER_DATA, SET_USER_DATA } from "../actions/user";
+import { REQUEST_USER_DATA, SET_USER_DATA } from "./userActionTypes";
 
 const initialState = {
   name: undefined,

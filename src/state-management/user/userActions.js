@@ -1,5 +1,5 @@
 import { UsersApi } from "../../api/gitlab";
-import { REQUEST_USER_DATA, SET_USER_DATA } from "./actionTypes";
+import { REQUEST_USER_DATA, SET_USER_DATA } from "./userActionTypes";
 
 const getCurrentUserData = accessToken => {
   return async dispatch => {

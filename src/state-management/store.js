@@ -2,16 +2,16 @@ import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import { connectRouter, routerMiddleware } from "connected-react-router";
 import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
-import authentication from "./authentication";
-import user from "./user";
+import { authenticationReducer } from "./authentication";
+import { userReducer } from "./user";
 
 export const history = createBrowserHistory();
 
 const initialState = {};
 
 const rootReducer = combineReducers({
-  authentication,
-  user
+  authentication: authenticationReducer,
+  user: userReducer
 });
 
 const enhancers = [];

@@ -1,4 +1,4 @@
-import { SET_AUTHENTICATION_STATUS } from "../actions/authentication";
+import { SET_AUTHENTICATION_STATUS } from "./authenticationActionTypes";
 
 const initialState = {
   isAuthenticated: false,

@@ -5,7 +5,7 @@ import {
   authenticateUser,
   getUserAuthenticationStatus,
   logoutUser
-} from "../actions/authentication";
+} from "../state-management/authentication/authenticationActions";
 
 class Login extends React.Component {
   componentDidMount() {
