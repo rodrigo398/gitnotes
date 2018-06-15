@@ -21,7 +21,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "precommit": "pretty-quick --staged && npm run lint",
-    "lint": "./node_modules/.bin/eslint src/**/*.js"
+    "lint": "eslint src/**/*.js"
   },
   "devDependencies": {
     "eslint-config-prettier": "^2.9.0",
