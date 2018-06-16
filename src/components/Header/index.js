@@ -146,7 +146,7 @@ class Header extends React.Component {
                   <UserMenu
                     name={name}
                     logout={logout}
-                    toggleMenu={this.toggleMenu}
+                    showMenu={this.toggleMenu}
                   />
                 )}
               </User>

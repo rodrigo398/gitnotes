@@ -60,50 +60,26 @@ const Logout = styled(MenuItem)`
   color: #ee463e;
 `;
 
-class UserMenu extends React.Component {
-  componentDidMount() {
-    document.addEventListener("mousedown", this.handleClickOutside);
-  }
+const userMenu = props =>
+  props.showMenu ? (
+    <MenuWrapper className="settings-menu">
+      <PointerWrapper>
+        <Pointer />
+      </PointerWrapper>
+      <ContentWrapper>
+        <p>{`Welcome, ${props.name}!`}</p>
+        <hr />
+        <MenuItem>Menu Item 1</MenuItem>
+        <MenuItem>Menu Item 2</MenuItem>
+        <Logout
+          onClick={() => {
+            props.logout();
+          }}
+        >
+          Logout
+        </Logout>
+      </ContentWrapper>
+    </MenuWrapper>
+  ) : null;
 
-  componentWillUnmount() {
-    document.removeEventListener("mousedown", this.handleClickOutside);
-  }
-
-  setWrapperRef = node => {
-    this.wrapperRef = node;
-  };
-
-  handleClickOutside = e => {
-    if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
-      this.props.toggleMenu();
-    }
-  };
-
-  render() {
-    const { name, logout } = this.props;
-    return (
-      <div ref={this.setWrapperRef}>
-        <MenuWrapper className="settings-menu">
-          <PointerWrapper>
-            <Pointer />
-          </PointerWrapper>
-          <ContentWrapper>
-            <p>{`Welcome, ${name}!`}</p>
-            <hr />
-            <MenuItem>Menu Item 1</MenuItem>
-            <MenuItem>Menu Item 2</MenuItem>
-            <Logout
-              onClick={() => {
-                logout();
-              }}
-            >
-              Logout
-            </Logout>
-          </ContentWrapper>
-        </MenuWrapper>
-      </div>
-    );
-  }
-}
-
-export default UserMenu;
+export default userMenu;
