@@ -34,7 +34,7 @@ const getCurrentAuthenticatedUserProjects = accessToken => {
             if (match) {
               return {
                 ...synchronizedProject,
-                editable: match.editable
+                enabled: match.enabled
               };
             } else {
               return synchronizedProject;
@@ -78,7 +78,7 @@ const toggleProject = (synchronizedProjects, projectId) => {
     if (project.id === projectId) {
       return {
         ...project,
-        editable: !project.editable
+        enabled: !project.enabled
       };
     } else {
       return project;

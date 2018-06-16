@@ -14,7 +14,7 @@ const Settings = ({
       <ul>
         {synchronizedProjects.map(project => (
           <li onClick={() => toggleProjectEdition(project.id)} key={project.id}>
-            {project.name} {project.editable ? `[editable]` : `[non editable]`}
+            {project.name} {project.enabled ? `[enabled]` : `[disabled]`}
           </li>
         ))}
       </ul>
