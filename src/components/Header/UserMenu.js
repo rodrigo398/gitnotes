@@ -61,7 +61,7 @@ const Logout = styled(MenuItem)`
 `;
 
 const userMenu = props =>
-  !props.showMenu ? (
+  props.showMenu ? (
     <MenuWrapper className="settings-menu" onMouseLeave={props.closeMenu}>
       <PointerWrapper>
         <Pointer />
