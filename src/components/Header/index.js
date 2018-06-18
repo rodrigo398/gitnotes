@@ -112,7 +112,7 @@ const Button = styled(Link)`
   }
 `;
 
-class Header extends React.Component {
+export class Header extends React.Component {
   state = {
     showUserMenu: false
   };

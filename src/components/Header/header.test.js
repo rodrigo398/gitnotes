@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import Header from "./index";
+import { Header } from "./index";
 
 describe("Header Component Test", () => {
   let props;
@@ -14,11 +14,35 @@ describe("Header Component Test", () => {
   };
 
   beforeEach(() => {
-    props = {};
+    props = {
+      logout: () => {},
+      isAuthenticated: false,
+      name: undefined,
+      avatarUrl: undefined
+    };
     mountedHeader = undefined;
   });
   it("Header Renders", () => {
-    header();
     expect(header()).toBeTruthy();
+    expect(
+      header()
+        .find("h1")
+        .text()
+    ).toBe("GitNotes");
+  });
+  it("Login button is shown", () => {
+    expect(
+      header()
+        .find({ to: "/login" })
+        .props().children
+    ).toBe("Login Page");
+  });
+  it("When logged in login button is not visible", () => {
+    props = { ...props, isAuthenticated: true };
+    expect(
+      header()
+        .find({ to: "/login" })
+        .exists()
+    ).toBe(false);
   });
 });
