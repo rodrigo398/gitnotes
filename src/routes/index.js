@@ -6,6 +6,7 @@ import Dashboard from "../components/Dashboard";
 import Settings from "../components/Settings";
 import PageNotFound from "../components/PageNotFound";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
+
 export default () => (
   <React.Fragment>
     <Header />

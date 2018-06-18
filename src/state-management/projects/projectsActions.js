@@ -8,12 +8,13 @@ import { ProjectsApi } from "../../api/gitlab";
 const USER_PROJECTS_KEYS = "USER_PROJECTS";
 
 const getCurrentAuthenticatedUserProjects = accessToken => {
-  return async (dispatch, getState) => {
+  return async dispatch => {
     dispatch({ type: PROJECTS_SYNCHRONIZING });
 
-    const projects = await ProjectsApi.getCurrentlyAuthenticatedUserProjects(
+    const projects = await ProjectsApi.getCurrentlyAuthenticatedUserProjectsAsync(
       accessToken
     );
+
     let synchronizedProjects = projects;
 
     try {

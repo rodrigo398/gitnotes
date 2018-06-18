@@ -1,6 +1,6 @@
 const USER_ENDPOINT = "https://gitlab.com/api/v4/user";
 
-const getCurrentlyAuthenticatedUser = async accessToken => {
+const getCurrentlyAuthenticatedUserAsync = async accessToken => {
   try {
     const response = await fetch(USER_ENDPOINT, {
       headers: {
@@ -18,4 +18,4 @@ const getCurrentlyAuthenticatedUser = async accessToken => {
   }
 };
 
-export default { getCurrentlyAuthenticatedUser };
+export default { getCurrentlyAuthenticatedUserAsync };
