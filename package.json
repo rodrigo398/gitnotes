@@ -21,10 +21,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "precommit": "pretty-quick --staged && npm run lint",
+    "precommit": "CI=true npm test && pretty-quick --staged && npm run lint",
     "lint": "eslint src/**/*.js"
   },
   "devDependencies": {
+    "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.1.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.0",
     "husky": "^0.14.3",
