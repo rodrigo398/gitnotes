@@ -1,6 +1,20 @@
 import { SET_AUTHENTICATION_STATUS } from "./authenticationActionTypes";
 import { AuthenticationApi } from "../../api/gitlab";
-import getCurrentUserData from "../user/userActions";
+
+const mapAuthenticationDataToState = authenticationData => {
+  return {
+    isAuthenticated: authenticationData !== undefined,
+    authenticationInProgress: authenticationData !== undefined,
+    accessToken:
+      authenticationData !== undefined
+        ? authenticationData.accessToken
+        : undefined,
+    tokenExpiration:
+      authenticationData !== undefined
+        ? authenticationData.tokenExpiration
+        : undefined
+  };
+};
 
 const authenticateUser = ({ callbackUrl, stateHash }) => {
   AuthenticationApi.initateAuthentication({ callbackUrl, stateHash });
@@ -11,35 +25,6 @@ const authenticateUser = ({ callbackUrl, stateHash }) => {
       isAuthenticated: false,
       accessToken: undefined,
       tokenExpiration: undefined
-    }
-  };
-};
-
-const getUserAuthenticationStatus = () => {
-  return async (dispatch, getState) => {
-    const authenticationData = AuthenticationApi.getAuthenticationData();
-    if (authenticationData) {
-      const { accessToken, tokenExpiration } = authenticationData;
-      dispatch({
-        type: SET_AUTHENTICATION_STATUS,
-        payload: {
-          isAuthenticated: true,
-          authenticationInProgress: false,
-          accessToken,
-          tokenExpiration
-        }
-      });
-      dispatch(getCurrentUserData(accessToken));
-    } else {
-      dispatch({
-        type: SET_AUTHENTICATION_STATUS,
-        payload: {
-          isAuthenticated: false,
-          authenticationInProgress: false,
-          accessToken: undefined,
-          tokenExpiration: undefined
-        }
-      });
     }
   };
 };
@@ -57,9 +42,15 @@ const logoutUser = () => {
   };
 };
 
-export {
-  authenticateUser,
-  getUserAuthenticationStatus,
-  logoutUser,
-  SET_AUTHENTICATION_STATUS
+const updateAuthentication = authenticationData => {
+  const state = mapAuthenticationDataToState(authenticationData);
+
+  return {
+    type: SET_AUTHENTICATION_STATUS,
+    payload: {
+      ...state
+    }
+  };
 };
+
+export { authenticateUser, logoutUser, updateAuthentication };

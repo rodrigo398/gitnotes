@@ -4,11 +4,10 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
-import UserMenu from "./UserMenu";
+import User from "./User";
 import { spin } from "../../styles/animations";
 import { logoutUser } from "../../state-management/authentication/authenticationActions";
 import settingsIcon from "../../images/settings.svg";
-import arrowDownIcon from "../../images/arrow-down.svg";
 
 const Wrapper = styled.div`
   min-width: 640px;
@@ -52,11 +51,6 @@ const Settings = styled(Link)`
   text-decoration: none;
   color: white;
   position: relative;
-
-  &hover .settings-menu {
-    opacity: 1;
-    transform: translateX(-200px);
-  }
 `;
 
 const SettingsIcon = styled.img`
@@ -66,29 +60,6 @@ const SettingsIcon = styled.img`
 
   &:hover {
     animation: ${spin} 2s infinite;
-  }
-`;
-
-const User = styled.div`
-  display: flex;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-
-  .arrow {
-    height: 8px;
-    width: 8px;
-    margin: 0 5px;
-    align-self: center;
-  }
-  .avatar {
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-  }
-  &:active,
-  :focus {
-    outline: none;
   }
 `;
 
@@ -113,17 +84,8 @@ const Button = styled(Link)`
 `;
 
 export class Header extends React.Component {
-  state = {
-    showUserMenu: false
-  };
-
-  toggleMenu = () => {
-    this.setState(prevState => ({ showUserMenu: !prevState.showUserMenu }));
-  };
-
   render() {
     const { logout, isAuthenticated, name, avatarUrl } = this.props;
-    const { showUserMenu } = this.state;
     return (
       <Wrapper>
         <GitNotesLogo to="/">
@@ -139,17 +101,7 @@ export class Header extends React.Component {
               <Settings to="/settings">
                 <SettingsIcon src={settingsIcon} alt="Settings" />
               </Settings>
-              <User name="userMenu" onClick={this.toggleMenu}>
-                <img className="avatar" src={avatarUrl} alt={name} />
-                <img className="arrow" src={arrowDownIcon} alt="arrow-down" />
-                {showUserMenu && (
-                  <UserMenu
-                    name={name}
-                    logout={logout}
-                    toggleMenu={this.toggleMenu}
-                  />
-                )}
-              </User>
+              <User avatar={avatarUrl} name={name} logout={logout} />
             </div>
           </Toolbar>
         )}
@@ -171,6 +123,7 @@ const mapStateToProps = ({ authentication, user: { name, avatarUrl } }) => {
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logoutUser())
 });
+
 export default withRouter(
   connect(
     mapStateToProps,

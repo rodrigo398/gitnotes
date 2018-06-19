@@ -3,15 +3,10 @@ import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router-dom";
 import {
   authenticateUser,
-  getUserAuthenticationStatus,
   logoutUser
 } from "../state-management/authentication/authenticationActions";
 
 class Login extends React.Component {
-  componentDidMount() {
-    this.props.checkAuthentication();
-  }
-
   _authenticate() {
     this.props.login({
       callbackUrl: `${window.location.origin}/login`,
@@ -64,8 +59,7 @@ const mapDispatchToProps = dispatch => ({
         stateHash
       })
     ),
-  logout: () => dispatch(logoutUser()),
-  checkAuthentication: () => dispatch(getUserAuthenticationStatus())
+  logout: () => dispatch(logoutUser())
 });
 
 export default withRouter(
