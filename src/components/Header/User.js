@@ -47,11 +47,9 @@ class User extends Component {
   }
 
   handleClick = e => {
-    if (this.node.contains(e.target)) {
-      return;
+    if (this.state.showUserMenu && !this.node.contains(e.target)) {
+      this.toggleMenu();
     }
-
-    this.toggleMenu();
   };
 
   render() {
