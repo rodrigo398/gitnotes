@@ -61,7 +61,7 @@ const Logout = styled(MenuItem)`
 `;
 
 const userMenu = props => (
-  <MenuWrapper className="settings-menu">
+  <MenuWrapper>
     <PointerWrapper>
       <Pointer />
     </PointerWrapper>

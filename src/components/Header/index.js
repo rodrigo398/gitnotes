@@ -51,11 +51,6 @@ const Settings = styled(Link)`
   text-decoration: none;
   color: white;
   position: relative;
-
-  &hover .settings-menu {
-    opacity: 1;
-    transform: translateX(-200px);
-  }
 `;
 
 const SettingsIcon = styled.img`
