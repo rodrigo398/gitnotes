@@ -33,23 +33,39 @@ class User extends Component {
   };
 
   toggleMenu = () => {
-    this.setState(prevState => ({ showUserMenu: !prevState.showUserMenu }));
+    this.setState(prevState => ({
+      showUserMenu: !prevState.showUserMenu
+    }));
+  };
+
+  componentDidMount() {
+    document.addEventListener("mousedown", this.handleClick, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClick, false);
+  }
+
+  handleClick = e => {
+    if (this.node.contains(e.target)) {
+      return;
+    }
+
+    this.toggleMenu();
   };
 
   render() {
+    const { avatar, name, logout } = this.props;
+    const { showUserMenu } = this.state;
     return (
-      <UserDiv name="userMenu" onClick={this.toggleMenu}>
-        <img className="avatar" src={this.props.avatar} alt={this.props.name} />
-        <img className="arrow" src={arrowDownIcon} alt="arrow-down" />
-        {this.state.showUserMenu && (
-          <UserMenu
-            name={this.props.name}
-            logout={this.props.logout}
-            showMenu={this.state.showUserMenu}
-            closeMenu={this.toggleMenu}
-          />
-        )}
-      </UserDiv>
+      <div ref={node => (this.node = node)}>
+        <UserDiv name="userMenu" onClick={this.toggleMenu}>
+          <img className="avatar" src={avatar} alt={name} />
+          <img className="arrow" src={arrowDownIcon} alt="arrow-down" />
+
+          {showUserMenu && <UserMenu name={name} logout={logout} />}
+        </UserDiv>
+      </div>
     );
   }
 }

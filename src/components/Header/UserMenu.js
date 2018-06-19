@@ -60,26 +60,25 @@ const Logout = styled(MenuItem)`
   color: #ee463e;
 `;
 
-const userMenu = props =>
-  props.showMenu ? (
-    <MenuWrapper className="settings-menu" onMouseLeave={props.closeMenu}>
-      <PointerWrapper>
-        <Pointer />
-      </PointerWrapper>
-      <ContentWrapper>
-        <p>{`Welcome, ${props.name}!`}</p>
-        <hr />
-        <MenuItem>Menu Item 1</MenuItem>
-        <MenuItem>Menu Item 2</MenuItem>
-        <Logout
-          onClick={() => {
-            props.logout();
-          }}
-        >
-          Logout
-        </Logout>
-      </ContentWrapper>
-    </MenuWrapper>
-  ) : null;
+const userMenu = props => (
+  <MenuWrapper className="settings-menu">
+    <PointerWrapper>
+      <Pointer />
+    </PointerWrapper>
+    <ContentWrapper>
+      <p>{`Welcome, ${props.name}!`}</p>
+      <hr />
+      <MenuItem>Menu Item 1</MenuItem>
+      <MenuItem>Menu Item 2</MenuItem>
+      <Logout
+        onClick={() => {
+          props.logout();
+        }}
+      >
+        Logout
+      </Logout>
+    </ContentWrapper>
+  </MenuWrapper>
+);
 
 export default userMenu;
