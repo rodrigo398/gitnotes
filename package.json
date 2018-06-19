@@ -21,7 +21,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "precommit": "CI=true npm test && pretty-quick --staged && npm run lint",
+    "precommit": "pretty-quick --staged && npm run lint && CI=true npm test",
     "lint": "eslint src/**/*.js"
   },
   "devDependencies": {
