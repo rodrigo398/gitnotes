@@ -22,15 +22,15 @@ Please note we have a code of conduct, please follow it in all your interactions
 
 3.  To make sure your changes don't break run `npm test` to run the unit tests.
 
-4)  We request that commit messages should start with a tag indicating what the purpose of the commit is.
+4.  We request that commit messages should start with a tag indicating what the purpose of the commit is.
     `fix:`, `doc:`, `chore:`, `feature:`, for example. This makes everything a bit clearer in the git history.
 
-5)  When you are ready to get feedback on your branch, create a merge request on Gitlab.
+5.  When you are ready to get feedback on your branch, create a merge request on Gitlab.
 
     > If you would like feedback on a branch you are working on,
     > `WIP:` (work in progress) can be added to the start of your merge request title.
 
-6)  Finally, once your code has been reviewed and approved, you can then merge your branch  
+6.  Finally, once your code has been reviewed and approved, you can then merge your branch  
     into `master` !
 
 ## Style Guide
