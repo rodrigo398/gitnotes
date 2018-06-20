@@ -4,31 +4,25 @@ const projectEndoint = () =>
   "https://gitlab.com/api/v4/projects?owned=true&archived=false";
 
 const getCurrentlyAuthenticatedUserProjectsAsync = async accessToken => {
-  try {
-    const response = await axios.get(projectEndoint(), {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    });
+  const response = await axios.get(projectEndoint(), {
+    headers: {
+      Authorization: `Bearer ${accessToken}`
+    }
+  });
 
-    const data = await response.data;
+  const data = response.data;
 
-    if (!data) return;
-
-    return await Promise.all(
-      data.map(async project => ({
-        id: project.id,
-        name: project.name,
-        avatarUrl: project.avatar_url,
-        path: project.path,
-        creationData: project.created_at,
-        lastUpdateData: project.last_activity_at,
-        projectRespitoryTree: await getProjectTreeAsync(accessToken, project.id)
-      }))
-    );
-  } catch (e) {
-    return;
-  }
+  return await Promise.all(
+    data.map(async project => ({
+      id: project.id,
+      name: project.name,
+      avatarUrl: project.avatar_url,
+      path: project.path,
+      creationData: project.created_at,
+      lastUpdateData: project.last_activity_at,
+      projectRespitoryTree: await getProjectTreeAsync(accessToken, project.id)
+    }))
+  );
 };
 
 const projectRepositoryTreeEndpoint = projectId =>
@@ -42,11 +36,16 @@ const getProjectTreeAsync = async (accessToken, projectId) => {
       }
     });
 
-    const data = await response.data;
-
-    if (!data) return;
+    return response.data;
   } catch (e) {
-    return;
+    if (e.response.status === 404) {
+      // no tree was found for this given project Id,
+      // we should return undefined instead of propagating this exception
+      return undefined;
+    } else {
+      // propagate other exceptions
+      throw e;
+    }
   }
 };
 
