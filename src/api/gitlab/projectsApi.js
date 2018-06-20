@@ -1,9 +1,11 @@
+import axios from "axios";
+
 const projectEndoint = () =>
   "https://gitlab.com/api/v4/projects?owned=true&archived=false";
 
 const getCurrentlyAuthenticatedUserProjectsAsync = async accessToken => {
   try {
-    const response = await fetch(projectEndoint(), {
+    const response = await axios.get(projectEndoint(), {
       headers: {
         Authorization: `Bearer ${accessToken}`
       }
@@ -34,7 +36,7 @@ const projectRepositoryTreeEndpoint = projectId =>
 
 const getProjectTreeAsync = async (accessToken, projectId) => {
   try {
-    const response = await fetch(projectRepositoryTreeEndpoint(projectId), {
+    const response = await axios.get(projectRepositoryTreeEndpoint(projectId), {
       headers: {
         Authorization: `Bearer ${accessToken}`
       }
