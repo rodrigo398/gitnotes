@@ -11,7 +11,7 @@ const getCurrentlyAuthenticatedUserProjectsAsync = async accessToken => {
       }
     });
 
-    const data = await response.json();
+    const data = await response.data;
 
     if (!data) return;
 
@@ -42,7 +42,7 @@ const getProjectTreeAsync = async (accessToken, projectId) => {
       }
     });
 
-    const data = await response.json();
+    const data = await response.data;
 
     if (!data) return;
   } catch (e) {

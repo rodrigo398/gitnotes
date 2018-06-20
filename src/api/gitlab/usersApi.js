@@ -10,7 +10,7 @@ const getCurrentlyAuthenticatedUserAsync = async accessToken => {
       }
     });
 
-    const data = await response.json();
+    const data = await response.data;
     return {
       name: data.name,
       avatarUrl: data.avatar_url
