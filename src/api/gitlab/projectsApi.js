@@ -10,10 +10,8 @@ const getCurrentlyAuthenticatedUserProjectsAsync = async accessToken => {
     }
   });
 
-  const data = response.data;
-
   return await Promise.all(
-    data.map(async project => ({
+    response.data.map(async project => ({
       id: project.id,
       name: project.name,
       avatarUrl: project.avatar_url,
@@ -41,7 +39,7 @@ const getProjectTreeAsync = async (accessToken, projectId) => {
     if (e.response.status === 404) {
       // no tree was found for this given project Id,
       // we should return undefined instead of propagating this exception
-      return undefined;
+      return;
     } else {
       // propagate other exceptions
       throw e;
