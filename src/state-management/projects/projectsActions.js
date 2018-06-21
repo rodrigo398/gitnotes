@@ -11,11 +11,9 @@ const getCurrentAuthenticatedUserProjects = accessToken => {
   return async dispatch => {
     dispatch({ type: PROJECTS_SYNCHRONIZING });
 
-    const projects = await ProjectsApi.getCurrentlyAuthenticatedUserProjectsAsync(
+    let synchronizedProjects = await ProjectsApi.getCurrentlyAuthenticatedUserProjectsAsync(
       accessToken
     );
-
-    let synchronizedProjects = projects;
 
     try {
       const persistedProjects = JSON.parse(
