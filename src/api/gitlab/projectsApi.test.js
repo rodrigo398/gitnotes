@@ -30,8 +30,8 @@ const mockResponse = [
 
 const nestedTree = projectApi.nestProjectRepositoryTree(mockResponse);
 
-describe("correctly nests Gitlab's project tree response", () => {
-  it("nestProjectRepositoryTree() is correct", () => {
+describe("projectApi", () => {
+  it("should parse gitlab project response to a correct structure", () => {
     expect(nestedTree).toEqual({
       tree: {
         group: {
