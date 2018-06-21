@@ -63,4 +63,7 @@ const nestProjectRepositoryTree = treeData => {
   );
 };
 
-export default { getCurrentlyAuthenticatedUserProjectsAsync };
+export default {
+  getCurrentlyAuthenticatedUserProjectsAsync,
+  nestProjectRepositoryTree
+};
