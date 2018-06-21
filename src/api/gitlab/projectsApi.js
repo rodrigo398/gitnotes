@@ -37,13 +37,13 @@ const getProjectTreeAsync = async (accessToken, projectId) => {
 
     return nestProjectRepositoryTree(data);
   } catch (e) {
-    if (e.response.status === 404) {
-      // no tree was found for this given project Id,
+    if (e.response.status === 404 || e.response.status === 403) {
+      // 404 - no tree was found for this given project Id,
       // we should return undefined instead of propagating this exception
-      return;
+      // 403 - Invalid read/write permissions on the repository
     } else {
       // propagate other exceptions
-      // throw.e
+      throw e;
     }
   }
 };
@@ -51,27 +51,16 @@ const getProjectTreeAsync = async (accessToken, projectId) => {
 // Tree Data comes back from GitLab as one big array with every file having a
 // path reference. This nests the data as it will be seen in the side bar
 const nestProjectRepositoryTree = treeData => {
-  const tree = [];
-  treeData.forEach(child => {
-    const object = child.path
-      .split("/")
-      .reverse()
-      .reduce((acc, val, i) => {
-        if (i === 0) {
-          return {
-            [val]: child
-          };
-        } else {
-          return {
-            [val]: {
-              tree: { ...acc }
-            }
-          };
-        }
-      }, {});
-    tree.push(object);
-  });
-  return merge.all(tree);
+  return merge.all(
+    treeData.map(child => {
+      return child.path
+        .split("/")
+        .reverse()
+        .reduce((acc, val) => {
+          return { tree: { [val]: acc } };
+        }, child);
+    })
+  );
 };
 
 export default { getCurrentlyAuthenticatedUserProjectsAsync };
