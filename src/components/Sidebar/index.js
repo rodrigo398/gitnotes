@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { ProjectsApi } from "../../api/gitlab";
+import Folder from "./Folder";
+import File from "./File";
+import merge from "deepmerge";
 
 const SidebarWrapper = styled.div`
   height: 100%;
@@ -12,36 +13,49 @@ const SidebarWrapper = styled.div`
   padding: 10px;
 `;
 
-const Sidebar = ({ projects, token }) => {
+const Sidebar = ({ projects }) => {
   const enabledProjects = () =>
     projects.map(project => {
       if (project.enabled) {
-        console.log(project);
-        // console.log(ProjectsApi.getProjectTreeAsync(token, project.id));
-        return <p>{project.name}</p>;
+        return project.projectRepositoryTree.map(child => {
+          if (child.type === "tree" && child.path.split("/").length === 1) {
+            return <Folder name={child.name} projectName={project.name} />;
+          } else if (
+            child.type === "blob" &&
+            child.path.split("/").length === 1
+          ) {
+            return <File name={child.name} />;
+          }
+        });
       }
     });
 
   return (
     <SidebarWrapper>
       <p>Here is the sidebar</p>
-      {enabledProjects()}
     </SidebarWrapper>
   );
 };
 
 const mapStateToProps = ({ authentication, projects }) => ({
-  token: authentication.accessToken,
   projects: projects.synchronizedProjects
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   logout: () => dispatch(logoutUser())
-// });
+export default connect(mapStateToProps)(Sidebar);
 
-export default withRouter(
-  connect(
-    mapStateToProps
-    // mapDispatchToProps
-  )(Sidebar)
-);
+// if (child.type === "blob"){
+//
+// }
+
+// if (child.type === "tree"){
+//   if (i === path.length - 1){
+//     object = {
+//       [path[i]]: child
+//     }
+//   }
+//   else {
+//     object = {
+//       [path[i]]: { ...object }
+//     }
+//   }
+// }
