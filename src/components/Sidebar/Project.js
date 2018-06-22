@@ -70,7 +70,7 @@ class Project extends React.Component {
 
   parseBranch = branch => {
     return Object.values(branch).map(child => {
-      if (child.tree) {
+      if (child.type === "tree") {
         return (
           <Folder key={child.id} child={child} parseBranch={this.parseBranch} />
         );

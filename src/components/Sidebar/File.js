@@ -7,7 +7,7 @@ const FileWrapper = styled.div`
 `;
 
 const FileButton = styled.button`
-  height: 30px;
+  height: 28px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -16,6 +16,7 @@ const FileButton = styled.button`
   color: inherit;
   border: none;
   font-size: 15px;
+  font-weight: 100;
 
   &:focus,
   :active {

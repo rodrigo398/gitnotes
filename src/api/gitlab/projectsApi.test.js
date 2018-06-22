@@ -141,4 +141,28 @@ describe("projectApi", () => {
       }
     });
   });
+  it("should filter out non - '.md' files", () => {
+    expect(
+      nestProjectRepositoryTree([
+        {
+          name: "index.md",
+          type: "blob",
+          path: "index.md"
+        },
+        {
+          name: "app.js",
+          type: "blob",
+          path: "app.js"
+        }
+      ])
+    ).toEqual({
+      tree: {
+        "index.md": {
+          name: "index.md",
+          type: "blob",
+          path: "index.md"
+        }
+      }
+    });
+  });
 });

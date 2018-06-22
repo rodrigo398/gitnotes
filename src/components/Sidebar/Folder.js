@@ -7,7 +7,7 @@ const FolderDiv = styled.div`
 `;
 
 const FolderButton = styled.button`
-  height: 30px;
+  height: 28px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -19,6 +19,7 @@ const FolderButton = styled.button`
   p {
     margin: 0;
     font-size: 15px;
+    font-weight: 100;
   }
 
   &:focus,
@@ -29,6 +30,13 @@ const FolderButton = styled.button`
   &:hover {
     background-color: #405c80;
   }
+`;
+
+const EmptyFolder = styled.div`
+  color: #111111;
+  font-size: 12px;
+  font-style: italic;
+  margin-left: 8px;
 `;
 
 const ArrowIcon = styled.img`
@@ -58,7 +66,15 @@ class Folder extends React.Component {
           <ArrowIcon src={arrowDownIcon} alt="arrow" open={folderExpanded} />
           <p>{child.name}</p>
         </FolderButton>
-        {folderExpanded && <FolderDiv>{parseBranch(child.tree)}</FolderDiv>}
+        {folderExpanded && (
+          <FolderDiv>
+            {child.tree ? (
+              parseBranch(child.tree)
+            ) : (
+              <EmptyFolder>no markdown..</EmptyFolder>
+            )}
+          </FolderDiv>
+        )}
       </div>
     );
   }

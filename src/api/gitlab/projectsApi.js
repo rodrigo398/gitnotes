@@ -52,14 +52,23 @@ const getProjectTreeAsync = async (accessToken, projectId) => {
 // path reference. This nests the data as it will be seen in the side bar
 const nestProjectRepositoryTree = treeData => {
   return merge.all(
-    treeData.map(child => {
-      return child.path
-        .split("/")
-        .reverse()
-        .reduce((acc, val) => {
-          return { tree: { [val]: acc } };
-        }, child);
-    })
+    treeData
+      .filter(child => {
+        if (
+          child.name.substring(child.name.length - 3) === ".md" ||
+          child.type === "tree"
+        ) {
+          return child;
+        }
+      })
+      .map(child => {
+        return child.path
+          .split("/")
+          .reverse()
+          .reduce((acc, val) => {
+            return { tree: { [val]: acc } };
+          }, child);
+      })
   );
 };
 
