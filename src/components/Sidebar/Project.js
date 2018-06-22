@@ -80,27 +80,26 @@ class Project extends React.Component {
     });
   };
 
+  renderProjectIcon = ({ avatarUrl, name }) => {
+    if (avatarUrl) {
+      return <ProjectImage src={avatarUrl} alt={name} />;
+    }
+    return <DefaultImage>{name.charAt(0).toUpperCase()}</DefaultImage>;
+  };
+
   render() {
     const { projectExpanded } = this.state;
     const { project } = this.props;
     return (
       <div>
         <ProjectHeader onClick={this.toggleProject}>
-          {project.avatarUrl ? (
-            <ProjectImage src={project.avatarUrl} alt={project.name} />
-          ) : (
-            <DefaultImage>
-              {project.name.split("")[0].toUpperCase()}
-            </DefaultImage>
-          )}
+          {this.renderProjectIcon(project)}
           {project.name}
           <ArrowIcon src={arrowDownIcon} alt="arrow" open={projectExpanded} />
         </ProjectHeader>
         {projectExpanded &&
-          this.parseBranch(
-            project.projectRepositoryTree.tree &&
-              project.projectRepositoryTree.tree
-          )}
+          project.projectRepositoryTree.tree &&
+          this.parseBranch(project.projectRepositoryTree.tree)}
       </div>
     );
   }
