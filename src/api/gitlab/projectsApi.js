@@ -49,15 +49,12 @@ const getProjectTreeAsync = async (accessToken, projectId) => {
 };
 
 // Tree Data comes back from GitLab as one big array with every file having a
-// path reference. This nests the data as it will be seen in the side bar
+// path reference. This nests the data and returns only .md files
 const mapToProjectRepositoryTree = treeData => {
   return merge.all(
     treeData
       .filter(child => {
-        return (
-          child.name.substring(child.name.length - 3) === ".md" ||
-          child.type === "tree"
-        );
+        return child.path.endsWith(".md") || child.type === "tree";
       })
       .map(child => {
         return child.path

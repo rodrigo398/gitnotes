@@ -33,6 +33,9 @@ const FolderButton = styled.button`
 `;
 
 const EmptyFolder = styled.div`
+  height: 25px;
+  display: flex;
+  align-items: center;
   color: #111111;
   font-size: 12px;
   font-style: italic;
@@ -57,24 +60,30 @@ class Folder extends React.Component {
       folderExpanded: !prevState.folderExpanded
     }));
 
+  renderFolderContent = ({ tree }) => {
+    return (
+      this.state.folderExpanded && (
+        <FolderDiv>
+          {tree ? (
+            this.props.parseBranch(tree)
+          ) : (
+            <EmptyFolder>no markdown..</EmptyFolder>
+          )}
+        </FolderDiv>
+      )
+    );
+  };
+
   render() {
     const { folderExpanded } = this.state;
-    const { parseBranch, child } = this.props;
+    const { child } = this.props;
     return (
       <div>
         <FolderButton onClick={this.toggleFolder}>
           <ArrowIcon src={arrowDownIcon} alt="arrow" open={folderExpanded} />
           <p>{child.name}</p>
         </FolderButton>
-        {folderExpanded && (
-          <FolderDiv>
-            {child.tree ? (
-              parseBranch(child.tree)
-            ) : (
-              <EmptyFolder>no markdown..</EmptyFolder>
-            )}
-          </FolderDiv>
-        )}
+        {this.renderFolderContent(child)}
       </div>
     );
   }
