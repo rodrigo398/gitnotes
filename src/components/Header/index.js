@@ -26,6 +26,10 @@ const GitNotesLogo = styled(Link)`
   margin: 0;
   color: white;
   text-decoration: none;
+
+  h1 {
+    margin: 0;
+  }
 `;
 
 const Toolbar = styled.div`
