@@ -1,5 +1,5 @@
 import projectApi from "./projectsApi";
-const { nestProjectRepositoryTree } = projectApi;
+const { mapToProjectRepositoryTree } = projectApi;
 
 const mockResponse = [
   {
@@ -31,7 +31,7 @@ const mockResponse = [
 
 describe("projectApi", () => {
   it("should parse gitlab project response to a correct structure", () => {
-    expect(nestProjectRepositoryTree(mockResponse)).toEqual({
+    expect(mapToProjectRepositoryTree(mockResponse)).toEqual({
       tree: {
         group: {
           name: "group",
@@ -66,11 +66,11 @@ describe("projectApi", () => {
     });
   });
   it("should return empty object, if passed an empty array", () => {
-    expect(nestProjectRepositoryTree([])).toEqual({});
+    expect(mapToProjectRepositoryTree([])).toEqual({});
   });
   it("should handle deep nesting", () => {
     expect(
-      nestProjectRepositoryTree([
+      mapToProjectRepositoryTree([
         {
           name: "index.md",
           type: "blob",
@@ -105,7 +105,7 @@ describe("projectApi", () => {
   });
   it("should return a single item", () => {
     expect(
-      nestProjectRepositoryTree([
+      mapToProjectRepositoryTree([
         {
           name: "index.md",
           type: "blob",
@@ -124,7 +124,7 @@ describe("projectApi", () => {
   });
   it("should return a single empty folder", () => {
     expect(
-      nestProjectRepositoryTree([
+      mapToProjectRepositoryTree([
         {
           name: "group",
           type: "tree",
@@ -143,7 +143,7 @@ describe("projectApi", () => {
   });
   it("should filter out non - '.md' files", () => {
     expect(
-      nestProjectRepositoryTree([
+      mapToProjectRepositoryTree([
         {
           name: "index.md",
           type: "blob",
