@@ -30,13 +30,6 @@ describe("Header Component Test", () => {
         .text()
     ).toBe("GitNotes");
   });
-  it("Login button is shown", () => {
-    expect(
-      header()
-        .find({ to: "/login" })
-        .props().children
-    ).toBe("Login Page");
-  });
   it("When logged in login button is not visible", () => {
     props = { ...props, isAuthenticated: true };
     expect(

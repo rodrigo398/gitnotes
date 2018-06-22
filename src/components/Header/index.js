@@ -67,26 +67,6 @@ const SettingsIcon = styled.img`
   }
 `;
 
-const Button = styled(Link)`
-  height: 29px;
-  width: 120px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 8px;
-  font-weight: 400;
-  letter-spacing: 0.5px;
-  background: #2db56f;
-  color: white;
-  text-decoration: none;
-  border-radius: 100px;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-
-  &:hover {
-    background-color: #2ec08f;
-  }
-`;
-
 export class Header extends React.Component {
   render() {
     const { logout, isAuthenticated, name, avatarUrl } = this.props;
@@ -109,8 +89,6 @@ export class Header extends React.Component {
             </div>
           </Toolbar>
         )}
-
-        {!isAuthenticated && <Button to="/login">Login Page</Button>}
       </Wrapper>
     );
   }
