@@ -16,27 +16,22 @@ describe("authenticationApi", () => {
   });
 
   it("should clear authentication data when clearAuthentication is called", () => {
-    //act
     auth.clearAuthentication();
 
-    //assert
     expect(localStorage.removeItem).toBeCalledWith(ACCESS_TOKEN_KEY);
     expect(localStorage.removeItem).toBeCalledWith(EXPIRES_AT_KEY);
     expect(localStorage.removeItem).toHaveBeenCalledTimes(2);
   });
 
   it("should redirect the user to gitlab OAuth page when initiateAuthentication is called", () => {
-    //setup
     const callbackUrl = "https://gitnotes.skillcamp.io";
     const stateHash = "atotalltarbitrarystatehash";
 
-    //act
     auth.initateAuthentication({
       callbackUrl,
       stateHash
     });
 
-    //assert
     expect(localStorage.setItem).toBeCalledWith(STATE_HASH_KEY, stateHash);
 
     expect(location.replace).toHaveBeenCalledWith(
@@ -53,7 +48,6 @@ client_id=${configuration.gitlab.gitnotesApplicationId}\
     });
 
     it("should not initialze a session when stateHash is not equal to the one received on a valid OAuth response data", () => {
-      //setup
       const now = Date.now();
       Date.now = jest.genMockFunction().mockReturnValue(now);
 
@@ -73,15 +67,12 @@ client_id=${configuration.gitlab.gitnotesApplicationId}\
       location.hash =
         "#access_token=7d7d034744082ddd240b0e5f45199cb061adfa8d92344fb771445101db168f64&token_type=bearer&state=1529702783752";
 
-      //act
       const authenticationData = auth.getAuthenticationData();
 
-      //assert
       expect(authenticationData).toBeUndefined();
     });
 
     it("should initialize a session when location.hash contains a valid OAuth response data", () => {
-      //setup
       const now = Date.now();
       Date.now = jest.genMockFunction().mockReturnValue(now);
 
@@ -100,10 +91,8 @@ client_id=${configuration.gitlab.gitnotesApplicationId}\
       location.hash =
         "#access_token=7d7d034744082ddd240b0e5f45199cb061adfa8d92344fb771445101db168f64&token_type=bearer&state=1529702783752";
 
-      //act
       const authenticationData = auth.getAuthenticationData();
 
-      //assert
       expect(localStorage.setItem).toHaveBeenCalledWith(
         EXPIRES_AT_KEY,
         `${3600 * 1000 + now}`
@@ -120,7 +109,6 @@ client_id=${configuration.gitlab.gitnotesApplicationId}\
     });
 
     it("should not initialize a session when location.hash does not contain OAuth response data", () => {
-      //setup
       const now = Date.now();
       Date.now = jest.genMockFunction().mockReturnValue(now);
 
@@ -139,10 +127,8 @@ client_id=${configuration.gitlab.gitnotesApplicationId}\
         .spyOn(localStorage, "getItem")
         .mockImplementation(value => expectedLocalStorageValues[value]);
 
-      //act
       auth.getAuthenticationData();
 
-      //assert
       expect(localStorage.setItem).not.toHaveBeenCalledWith(EXPIRES_AT_KEY);
       expect(localStorage.setItem).not.toHaveBeenCalledWith(ACCESS_TOKEN_KEY);
       expect(localStorage.setItem).toHaveBeenCalledTimes(0);
@@ -151,7 +137,6 @@ client_id=${configuration.gitlab.gitnotesApplicationId}\
     });
 
     it("should return undefined the user is not authenticated", () => {
-      //setup
       const now = Date.now();
       Date.now = jest.genMockFunction().mockReturnValue(now);
 
@@ -169,16 +154,13 @@ client_id=${configuration.gitlab.gitnotesApplicationId}\
 
       location.hash = "";
 
-      //act
       const authenticationData = auth.getAuthenticationData();
 
-      //assert
       expect(authenticationData).toBeUndefined();
       Date.now.mockRestore();
     });
 
     it("should return a valid access token data when the user is authenticated", () => {
-      //setup
       const now = Date.now();
       Date.now = jest.genMockFunction().mockReturnValue(now);
 
@@ -195,10 +177,8 @@ client_id=${configuration.gitlab.gitnotesApplicationId}\
 
       location.hash = "";
 
-      //act
       const authenticationData = auth.getAuthenticationData();
 
-      //assert
       expect(authenticationData).toBeTruthy();
       expect(authenticationData.accessToken).toBe(
         "7d7d034744082ddd240b0e5f45199cb061adfa8d92344fb771445101db168f64"
