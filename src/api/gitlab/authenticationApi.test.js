@@ -65,7 +65,7 @@ client_id=${configuration.gitlab.gitnotesApplicationId}\
       });
 
       location.hash =
-        "#access_token=7d7d034744082ddd240b0e5f45199cb061adfa8d92344fb771445101db168f64&token_type=bearer&state=1529702783752";
+        "#access_token=anAccessToken&token_type=bearer&state=1529702783752";
 
       const authenticationData = auth.getAuthenticationData();
 
@@ -89,7 +89,7 @@ client_id=${configuration.gitlab.gitnotesApplicationId}\
       });
 
       location.hash =
-        "#access_token=7d7d034744082ddd240b0e5f45199cb061adfa8d92344fb771445101db168f64&token_type=bearer&state=1529702783752";
+        "#access_token=anAccessToken&token_type=bearer&state=1529702783752";
 
       const authenticationData = auth.getAuthenticationData();
 
@@ -99,12 +99,10 @@ client_id=${configuration.gitlab.gitnotesApplicationId}\
       );
       expect(localStorage.setItem).toHaveBeenCalledWith(
         ACCESS_TOKEN_KEY,
-        `7d7d034744082ddd240b0e5f45199cb061adfa8d92344fb771445101db168f64`
+        `anAccessToken`
       );
       expect(authenticationData).toBeTruthy();
-      expect(authenticationData.accessToken).toBe(
-        "7d7d034744082ddd240b0e5f45199cb061adfa8d92344fb771445101db168f64"
-      );
+      expect(authenticationData.accessToken).toBe("anAccessToken");
       expect(authenticationData.tokenExpiration).toBe(`${now + 1000 * 3600}`);
     });
 
@@ -113,9 +111,7 @@ client_id=${configuration.gitlab.gitnotesApplicationId}\
       Date.now = jest.genMockFunction().mockReturnValue(now);
 
       const expectedLocalStorageValues = {
-        [ACCESS_TOKEN_KEY]: JSON.stringify(
-          "7d7d034744082ddd240b0e5f45199cb061adfa8d92344fb771445101db168f64"
-        ),
+        [ACCESS_TOKEN_KEY]: JSON.stringify("anAccessToken"),
         [EXPIRES_AT_KEY]: JSON.stringify(0),
         [STATE_HASH_KEY]: JSON.stringify(1529702783752)
       };
@@ -141,9 +137,7 @@ client_id=${configuration.gitlab.gitnotesApplicationId}\
       Date.now = jest.genMockFunction().mockReturnValue(now);
 
       const expectedLocalStorageValues = {
-        [ACCESS_TOKEN_KEY]: JSON.stringify(
-          "7d7d034744082ddd240b0e5f45199cb061adfa8d92344fb771445101db168f64"
-        ),
+        [ACCESS_TOKEN_KEY]: JSON.stringify("anAccessToken"),
         [EXPIRES_AT_KEY]: JSON.stringify(now - 3600), // defining expires_at value < current date
         [STATE_HASH_KEY]: JSON.stringify(1529702783752)
       };
@@ -165,8 +159,7 @@ client_id=${configuration.gitlab.gitnotesApplicationId}\
       Date.now = jest.genMockFunction().mockReturnValue(now);
 
       const expectedLocalStorageValues = {
-        [ACCESS_TOKEN_KEY]:
-          "7d7d034744082ddd240b0e5f45199cb061adfa8d92344fb771445101db168f64",
+        [ACCESS_TOKEN_KEY]: "anAccessToken",
         [EXPIRES_AT_KEY]: now + 3600, // defining expires_at value > current date
         [STATE_HASH_KEY]: 1529702783752
       };
@@ -180,9 +173,7 @@ client_id=${configuration.gitlab.gitnotesApplicationId}\
       const authenticationData = auth.getAuthenticationData();
 
       expect(authenticationData).toBeTruthy();
-      expect(authenticationData.accessToken).toBe(
-        "7d7d034744082ddd240b0e5f45199cb061adfa8d92344fb771445101db168f64"
-      );
+      expect(authenticationData.accessToken).toBe("anAccessToken");
       expect(authenticationData.tokenExpiration).toBe(now + 3600);
 
       Date.now.mockRestore();
