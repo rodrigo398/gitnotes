@@ -13,7 +13,7 @@ client_id=${clientId}\
 
 const parseOAuthResult = () => {
   return (
-    location.hash
+    window.location.hash
       //omit the #
       .substring(1)
       //get an array of key=value pairs
@@ -49,7 +49,7 @@ const getAccessTokenData = () => ({
 });
 
 const hasValidOAuthResponse = () =>
-  location.hash.indexOf(ACCESS_TOKEN_KEY) > -1 && isOAuthResultValid();
+  window.location.hash.indexOf(ACCESS_TOKEN_KEY) > -1 && isOAuthResultValid();
 
 const isOAuthResultValid = () => {
   return parseOAuthResult()["state"] === localStorage.getItem(STATE_HASH_KEY);
@@ -75,7 +75,7 @@ const getAuthenticationData = () => {
 const initateAuthentication = ({ callbackUrl, stateHash }) => {
   const clientId = configuration.gitlab.gitnotesApplicationId;
   localStorage.setItem(STATE_HASH_KEY, stateHash);
-  location.replace(buildOAuthUrl({ clientId, callbackUrl, stateHash }));
+  window.location.replace(buildOAuthUrl({ clientId, callbackUrl, stateHash }));
 };
 
 const clearAuthentication = () => {
