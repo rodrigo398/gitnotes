@@ -11,3 +11,4 @@ const localStorageMock = {
 };
 
 global.localStorage = localStorageMock;
+global.location.replace = jest.fn();

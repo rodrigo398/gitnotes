@@ -9,11 +9,11 @@ const buildOAuthUrl = ({
 client_id=${clientId}\
 &redirect_uri=${encodeURIComponent(callbackUrl)}\
 &response_type=token\
-&state=${encodeURIComponent(stateHash)};`;
+&state=${encodeURIComponent(stateHash)}`;
 
 const parseOAuthResult = () => {
   return (
-    window.location.hash
+    location.hash
       //omit the #
       .substring(1)
       //get an array of key=value pairs
@@ -49,7 +49,7 @@ const getAccessTokenData = () => ({
 });
 
 const hasValidOAuthResponse = () =>
-  window.location.hash.indexOf(ACCESS_TOKEN_KEY) > -1 && isOAuthResultValid();
+  location.hash.indexOf(ACCESS_TOKEN_KEY) > -1 && isOAuthResultValid();
 
 const isOAuthResultValid = () => {
   return parseOAuthResult()["state"] === localStorage.getItem(STATE_HASH_KEY);
@@ -59,9 +59,7 @@ const initializeSession = () => {
   const { access_token, expires_in } = parseOAuthResult();
   localStorage.setItem(ACCESS_TOKEN_KEY, access_token);
 
-  let expiresAt = JSON.stringify(
-    (expires_in || 3600) * 1000 + new Date().getTime()
-  );
+  let expiresAt = JSON.stringify((expires_in || 3600) * 1000 + Date.now());
   localStorage.setItem(EXPIRES_AT_KEY, expiresAt);
 };
 
@@ -77,7 +75,7 @@ const getAuthenticationData = () => {
 const initateAuthentication = ({ callbackUrl, stateHash }) => {
   const clientId = configuration.gitlab.gitnotesApplicationId;
   localStorage.setItem(STATE_HASH_KEY, stateHash);
-  window.location.replace(buildOAuthUrl({ clientId, callbackUrl, stateHash }));
+  location.replace(buildOAuthUrl({ clientId, callbackUrl, stateHash }));
 };
 
 const clearAuthentication = () => {
