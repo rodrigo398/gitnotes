@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Folder from "./Folder";
 import File from "./File";
 import arrowDownIcon from "../../images/arrow-down.svg";
+import { colors } from "../../styles/styles";
 
 const ProjectHeader = styled.button`
   width: calc(100% + 16px);
@@ -10,7 +11,7 @@ const ProjectHeader = styled.button`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background-color: #758aa0;
+  background-color: ${colors.mediumGray2};
   border: none;
   padding-left: 8px;
   margin: 5px 0 5px -8px;
@@ -25,7 +26,7 @@ const ProjectHeader = styled.button`
   }
 
   &:hover {
-    background-color: #869db4;
+    background-color: ${colors.lightGray2};
   }
 `;
 
@@ -45,8 +46,8 @@ const DefaultImage = styled.div`
   font-weight: 900;
   font-size: 16px;
   border-radius: 50%;
-  background-color: white;
-  color: #2c3840;
+  background-color: ${colors.white};
+  color: ${colors.darkGray};
   margin-right: 8px;
 `;
 

@@ -1,18 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import { moveInRight } from "../../styles/animations";
+import { colors } from "../../styles/styles";
 
 const MenuWrapper = styled.div`
   width: 200px;
   height: fit-content;
   position: absolute;
-  background-color: white;
+  background-color: ${colors.white};
   font-size: 13px;
   text-align: center;
-  color: #333;
+  color: ${colors.darkGray3};
   padding-bottom: 8px;
   border-radius: 8px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 10px ${colors.boxShadow};
   top: 55px;
   right: 14px;
   z-index: 100;
@@ -30,7 +31,7 @@ const Pointer = styled.span`
   width: 15px;
   height: 15px;
   position: absolute;
-  background-color: white;
+  background-color: ${colors.white};
   transform: rotate(45deg);
   top: -6px;
   right: 32px;
@@ -49,15 +50,15 @@ const MenuItem = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #333;
+  color: ${colors.darkGray3};
 
   &:hover {
-    background-color: aliceblue;
+    background-color: ${colors.aliceblue};
   }
 `;
 
 const Logout = styled(MenuItem)`
-  color: #ee463e;
+  color: ${colors.red};
 `;
 
 const userMenu = props => (

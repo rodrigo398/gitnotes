@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { colors } from "../../styles/styles";
 const searchIcon = require("../../images/search.svg");
 
 const Wrapper = styled.div`
@@ -11,7 +12,7 @@ const Wrapper = styled.div`
 const Input = styled.input`
   width: 300px;
   background-color: transparent;
-  color: #f8f8f8;
+  color: ${colors.lightGray3};
   font-size: 16px;
   font-weight: 100;
   letter-spacing: 0.5px;

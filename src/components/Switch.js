@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { colors } from "../styles/styles";
 
 const SwitchWrapper = styled.button`
   margin: 20px;
@@ -8,10 +9,11 @@ const SwitchWrapper = styled.button`
   display: flex;
   align-items: center;
   position: relative;
-  background-color: ${props => (props.enabled ? "#2db56f" : "#ffffff")};
+  background-color: ${props => (props.enabled ? colors.green : colors.white)};
   border-radius: 100px;
-  border: 2px solid ${props => (props.enabled ? "#2db56f" : "#eeeeee")};
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
+  border: 2px solid
+    ${props => (props.enabled ? colors.green : colors.lightGray)};
+  box-shadow: 0 1px 10px ${colors.boxShadow};
   transition: all ease 200ms;
   &:focus,
   :active {
@@ -25,10 +27,10 @@ const SwitchButton = styled.span`
   position: absolute;
   left: 3px;
   transform: ${props => props.enabled && "translateX(27px)"};
-  background-color: #ffffff;
+  background-color: ${colors.white};
   border-radius: 50%;
   box-shadow: ${props => (props.enabled ? "-3px" : "3px")} 0 5px
-    rgba(0, 0, 0, 0.05);
+    ${colors.boxShadow};
   transition: all ease 200ms;
 `;
 

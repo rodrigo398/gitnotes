@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import Project from "./Project";
+import { colors } from "../../styles/styles";
 
 const SidebarWrapper = styled.div`
   height: calc(100vh - 50px);
   width: 250px;
-  background-color: #506674;
-  color: white;
+  background-color: ${colors.mediumGray};
+  color: ${colors.white};
   padding: 0 8px;
   box-sizing: border-box;
   overflow: scroll;

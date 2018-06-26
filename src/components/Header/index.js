@@ -8,6 +8,7 @@ import User from "./User";
 import { spin } from "../../styles/animations";
 import { logoutUser } from "../../state-management/authentication/authenticationActions";
 import settingsIcon from "../../images/settings.svg";
+import { colors } from "../../styles/styles";
 
 const Wrapper = styled.div`
   min-width: 640px;
@@ -17,14 +18,14 @@ const Wrapper = styled.div`
   align-items: center;
   position: relative;
   padding: 5px 10px;
-  background-color: #2c3840;
+  background-color: ${colors.darkGray};
   color: white;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
 `;
 
 const GitNotesLogo = styled(Link)`
   margin: 0;
-  color: white;
+  color: ${colors.white};
   text-decoration: none;
 
   h1 {
@@ -53,7 +54,7 @@ const Settings = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: white;
+  color: ${colors.white};
   position: relative;
 `;
 
