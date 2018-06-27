@@ -61,7 +61,9 @@ class User extends Component {
           <img className="avatar" src={avatar} alt={name} />
           <img className="arrow" src={arrowDownIcon} alt="arrow-down" />
 
-          {showUserMenu && <UserMenu name={name} logout={logout} />}
+          {showUserMenu && (
+            <UserMenu name={name} logout={logout} theme={this.props.theme} />
+          )}
         </UserDiv>
       </div>
     );

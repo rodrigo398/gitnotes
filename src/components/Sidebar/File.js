@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { colors } from "../../styles/styles";
 
 const FileWrapper = styled.div`
-  color: ${colors.info};
+  color: ${props => props.theme.fileWrapperColor};
   margin: 0;
 `;
 
@@ -25,7 +24,7 @@ const FileButton = styled.button`
   }
 
   &:hover {
-    background-color: ${colors.theme4};
+    background-color: ${props => props.theme.backgroundColor};
   }
 `;
 

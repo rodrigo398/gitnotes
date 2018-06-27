@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import arrowDownIcon from "../../images/arrow-down.svg";
-import { colors } from "../../styles/styles";
 
 const FolderDiv = styled.div`
   margin-left: 20px;
@@ -29,7 +28,7 @@ const FolderButton = styled.button`
   }
 
   &:hover {
-    background-color: ${colors.theme4};
+    background-color: ${props => props.theme.backgroundColor};
   }
 `;
 
@@ -37,7 +36,7 @@ const EmptyFolder = styled.div`
   height: 25px;
   display: flex;
   align-items: center;
-  color: ${colors.theme2};
+  color: ${props => props.theme.emptyFolderColor};
   font-size: 12px;
   font-style: italic;
   margin-left: 8px;

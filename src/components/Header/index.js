@@ -8,7 +8,23 @@ import User from "./User";
 import { spin } from "../../styles/animations";
 import { logoutUser } from "../../state-management/authentication/authenticationActions";
 import settingsIcon from "../../images/settings.svg";
-import { colors } from "../../styles/styles";
+import { headerTheme } from "../../styles/styles";
+
+const GitNotesLogo = styled(Link)`
+  margin: 0;
+  text-decoration: none;
+
+  h1 {
+    margin: 0;
+  }
+`;
+
+const Settings = styled(Link)`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  position: relative;
+`;
 
 const Wrapper = styled.div`
   min-width: 640px;
@@ -18,18 +34,11 @@ const Wrapper = styled.div`
   align-items: center;
   position: relative;
   padding: 5px 10px;
-  background-color: ${colors.theme1};
-  color: white;
-  box-shadow: 0 5px 5px ${colors.boxShadow};
-`;
-
-const GitNotesLogo = styled(Link)`
-  margin: 0;
-  color: ${colors.white};
-  text-decoration: none;
-
-  h1 {
-    margin: 0;
+  background-color: ${props => props.theme.backgroundColor};
+  color: ${props => props.theme.white};
+  box-shadow: 0 5px 5px ${props => props.theme.boxShadow};
+  ${GitNotesLogo}, ${Settings} {
+    color: ${props => props.theme.white};
   }
 `;
 
@@ -50,14 +59,6 @@ const Toolbar = styled.div`
   }
 `;
 
-const Settings = styled(Link)`
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: ${colors.white};
-  position: relative;
-`;
-
 const SettingsIcon = styled.img`
   height: 20px;
   width: 20px;
@@ -72,21 +73,25 @@ export class Header extends React.Component {
   render() {
     const { logout, isAuthenticated, name, avatarUrl } = this.props;
     return (
-      <Wrapper>
+      <Wrapper theme={headerTheme}>
         <GitNotesLogo to="/">
           <h1>GitNotes</h1>
         </GitNotesLogo>
-
         {isAuthenticated && (
           <Toolbar>
             <div className="search-wrapper">
-              <SearchBar />
+              <SearchBar theme={headerTheme} />
             </div>
             <div className="tools-wrapper">
               <Settings to="/settings">
                 <SettingsIcon src={settingsIcon} alt="Settings" />
               </Settings>
-              <User avatar={avatarUrl} name={name} logout={logout} />
+              <User
+                avatar={avatarUrl}
+                name={name}
+                logout={logout}
+                theme={headerTheme}
+              />
             </div>
           </Toolbar>
         )}

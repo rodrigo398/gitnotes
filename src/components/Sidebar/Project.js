@@ -11,12 +11,12 @@ const ProjectHeader = styled.button`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background-color: ${colors.theme4};
+  background-color: ${props => props.theme.backgroundColor};
   border: none;
   padding-left: 8px;
   margin: 5px 0 5px -8px;
   font-size: 15px;
-  color: white;
+  color: ${props => props.theme.white};
   font-weight: 600;
   letter-spacing: 0.4px;
 
@@ -26,7 +26,7 @@ const ProjectHeader = styled.button`
   }
 
   &:hover {
-    background-color: ${colors.theme5};
+    background-color: ${props => props.theme.projectHeaderHover};
   }
 `;
 
@@ -46,7 +46,7 @@ const DefaultImage = styled.div`
   font-weight: 900;
   font-size: 16px;
   border-radius: 50%;
-  background-color: ${colors.white};
+  background-color: ${props => props.theme.defaultImageColor};
   color: ${colors.theme2};
   margin-right: 8px;
 `;
@@ -73,10 +73,17 @@ class Project extends React.Component {
     return Object.values(branch).map(child => {
       if (child.type === "tree") {
         return (
-          <Folder key={child.id} child={child} parseBranch={this.parseBranch} />
+          <Folder
+            key={child.id}
+            child={child}
+            parseBranch={this.parseBranch}
+            theme={this.props.theme}
+          />
         );
       } else {
-        return <File key={child.id} name={child.name} />;
+        return (
+          <File key={child.id} name={child.name} theme={this.props.theme} />
+        );
       }
     });
   };

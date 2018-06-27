@@ -2,26 +2,28 @@ import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import Project from "./Project";
-import { colors } from "../../styles/styles";
+import { sideBarTheme } from "../../styles/styles";
 
 const SidebarWrapper = styled.div`
   height: calc(100vh - 50px);
   width: 250px;
-  background-color: ${colors.theme4};
-  color: ${colors.white};
+  background-color: ${props => props.theme.backgroundColor};
+  color: ${props => props.theme.white};
   padding: 0 8px;
   box-sizing: border-box;
   overflow: scroll;
 `;
 
-const Sidebar = ({ projects }) => {
+const Sidebar = ({ projects }, ...payload) => {
   const renderProjects = () => {
     return projects.filter(project => project.enabled).map(project => {
-      return <Project project={project} />;
+      return <Project project={project} theme={sideBarTheme} />;
     });
   };
 
-  return <SidebarWrapper>{renderProjects()}</SidebarWrapper>;
+  return (
+    <SidebarWrapper theme={sideBarTheme}>{renderProjects()}</SidebarWrapper>
+  );
 };
 
 const mapStateToProps = ({ authentication, projects }) => ({

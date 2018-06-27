@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { colors } from "../../styles/styles";
 const searchIcon = require("../../images/search.svg");
 
 const Wrapper = styled.div`
@@ -12,7 +11,7 @@ const Wrapper = styled.div`
 const Input = styled.input`
   width: 300px;
   background-color: transparent;
-  color: ${colors.theme5};
+  color: ${props => props.theme.inputColor};
   font-size: 16px;
   font-weight: 100;
   letter-spacing: 0.5px;
@@ -46,6 +45,7 @@ class SearchBar extends React.Component {
       <Wrapper>
         <Icon src={searchIcon} alt="search" />
         <Input
+          theme={this.props.theme}
           name="gitnotes-search"
           type="text"
           placeholder="Search for notes or keywords.."

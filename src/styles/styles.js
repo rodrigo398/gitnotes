@@ -25,3 +25,22 @@ export const colors = {
   white_50: "rgba(255,255,255,.5)",
   boxShadow: "rgba(0, 0, 0, 0.05)"
 };
+
+export const sideBarTheme = {
+  backgroundColor: colors.theme4,
+  white: colors.white,
+  projectHeaderHover: colors.theme5,
+  defaultImageColor: colors.theme2,
+  emptyFolderColor: colors.theme2,
+  fileWrapperColor: colors.info
+};
+
+export const headerTheme = {
+  backgroundColor: colors.theme1,
+  white: colors.white,
+  boxShadow: colors.boxShadow,
+  inputColor: colors.theme5,
+  menuWrapperColor: colors.theme2,
+  menuItemHover: colors.theme5,
+  logOutColor: colors.danger
+};
