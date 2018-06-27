@@ -18,9 +18,9 @@ const Wrapper = styled.div`
   align-items: center;
   position: relative;
   padding: 5px 10px;
-  background-color: ${colors.darkGray};
+  background-color: ${colors.theme1};
   color: white;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 5px ${colors.boxShadow};
 `;
 
 const GitNotesLogo = styled(Link)`

@@ -29,7 +29,7 @@ const FolderButton = styled.button`
   }
 
   &:hover {
-    background-color: ${colors.mediumGray3};
+    background-color: ${colors.theme4};
   }
 `;
 
@@ -37,7 +37,7 @@ const EmptyFolder = styled.div`
   height: 25px;
   display: flex;
   align-items: center;
-  color: ${colors.darkGray2};
+  color: ${colors.theme2};
   font-size: 12px;
   font-style: italic;
   margin-left: 8px;

@@ -10,7 +10,7 @@ const MenuWrapper = styled.div`
   background-color: ${colors.white};
   font-size: 13px;
   text-align: center;
-  color: ${colors.darkGray3};
+  color: ${colors.theme2};
   padding-bottom: 8px;
   border-radius: 8px;
   box-shadow: 0 10px 10px ${colors.boxShadow};
@@ -50,15 +50,15 @@ const MenuItem = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${colors.darkGray3};
+  color: ${colors.theme2};
 
   &:hover {
-    background-color: ${colors.aliceblue};
+    background-color: ${colors.theme5};
   }
 `;
 
 const Logout = styled(MenuItem)`
-  color: ${colors.red};
+  color: ${colors.danger};
 `;
 
 const userMenu = props => (

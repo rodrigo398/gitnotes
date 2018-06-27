@@ -11,7 +11,7 @@ const ProjectHeader = styled.button`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background-color: ${colors.mediumGray2};
+  background-color: ${colors.theme4};
   border: none;
   padding-left: 8px;
   margin: 5px 0 5px -8px;
@@ -26,7 +26,7 @@ const ProjectHeader = styled.button`
   }
 
   &:hover {
-    background-color: ${colors.lightGray2};
+    background-color: ${colors.theme5};
   }
 `;
 
@@ -47,7 +47,7 @@ const DefaultImage = styled.div`
   font-size: 16px;
   border-radius: 50%;
   background-color: ${colors.white};
-  color: ${colors.darkGray};
+  color: ${colors.theme2};
   margin-right: 8px;
 `;
 

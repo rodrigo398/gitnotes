@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 const Input = styled.input`
   width: 300px;
   background-color: transparent;
-  color: ${colors.lightGray3};
+  color: ${colors.theme5};
   font-size: 16px;
   font-weight: 100;
   letter-spacing: 0.5px;

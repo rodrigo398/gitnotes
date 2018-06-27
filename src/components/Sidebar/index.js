@@ -7,7 +7,7 @@ import { colors } from "../../styles/styles";
 const SidebarWrapper = styled.div`
   height: calc(100vh - 50px);
   width: 250px;
-  background-color: ${colors.mediumGray};
+  background-color: ${colors.theme4};
   color: ${colors.white};
   padding: 0 8px;
   box-sizing: border-box;

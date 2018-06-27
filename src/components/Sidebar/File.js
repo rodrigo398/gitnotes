@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { colors } from "../../styles/styles";
 
 const FileWrapper = styled.div`
-  color: ${colors.lightblue};
+  color: ${colors.info};
   margin: 0;
 `;
 
@@ -25,7 +25,7 @@ const FileButton = styled.button`
   }
 
   &:hover {
-    background-color: ${colors.mediumGray3};
+    background-color: ${colors.theme4};
   }
 `;
 
