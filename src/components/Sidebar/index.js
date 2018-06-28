@@ -14,10 +14,13 @@ const SidebarWrapper = styled.div`
   overflow: scroll;
 `;
 
-const Sidebar = ({ projects }, ...payload) => {
+const Sidebar = ({ projects, onFileChange }) => {
   const renderProjects = () => {
     return projects.filter(project => project.enabled).map(project => {
-      return <Project project={project} theme={sideBarTheme} />;
+      return <Project
+        project={project}
+        theme={this.props.theme}
+        onFileChange={onFileChange} />;
     });
   };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { getFileAsync } from "../../api/gitlab/fileApi";
 
 const FileWrapper = styled.div`
   color: ${props => props.theme.fileWrapperColor};
@@ -28,10 +29,18 @@ const FileButton = styled.button`
   }
 `;
 
-const File = props => (
-  <FileWrapper>
-    <FileButton>{props.name}</FileButton>
-  </FileWrapper>
-);
+const File = ({ projectId, child, onFileChange }) => {
+  const getFile = () => {
+    getFileAsync(projectId, child.path).then(data => {
+      onFileChange(data);
+    });
+  };
+
+  return (
+    <FileWrapper>
+      <FileButton onClick={getFile}>{child.name}</FileButton>
+    </FileWrapper>
+  );
+};
 
 export default File;

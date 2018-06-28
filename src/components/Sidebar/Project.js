@@ -82,7 +82,13 @@ class Project extends React.Component {
         );
       } else {
         return (
-          <File key={child.id} name={child.name} theme={this.props.theme} />
+          <File
+            key={child.id}
+            projectId={this.props.project.id}
+            child={child}
+            onFileChange={this.props.onFileChange}
+            theme={this.props.theme}
+          />
         );
       }
     });

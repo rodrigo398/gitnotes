@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Sidebar from "./Sidebar";
+import NoteView from "./NoteView";
 
 const DashboardWrapper = styled.div`
   height: calc(
@@ -12,9 +13,22 @@ const DashboardWrapper = styled.div`
   display: flex;
 `;
 
-export default () => (
-  <DashboardWrapper>
-    <Sidebar />
-    <div>Notes Preview / Editor</div>
-  </DashboardWrapper>
-);
+class Dashboard extends React.Component {
+  state = {
+    file: "Select a markdown file to view.."
+  };
+
+  onFileChange = file => this.setState({ file });
+
+  render() {
+    const { file } = this.state;
+    return (
+      <DashboardWrapper>
+        <Sidebar onFileChange={this.onFileChange} />
+        <NoteView file={file} />
+      </DashboardWrapper>
+    );
+  }
+}
+
+export default Dashboard;
