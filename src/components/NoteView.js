@@ -1,23 +1,36 @@
 import React from "react";
 import styled from "styled-components";
-import ReactMarkdown from "react-markdown";
+import MarkdownIt from "markdown-it";
 
 const NoteViewWrapper = styled.div`
   height: calc(100vh - 50px);
   width: 100%;
   display: flex;
   justify-content: center;
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    display: none; // hidden on safari & chrome
+  }
 `;
 
-const Markdown = styled(ReactMarkdown)`
+const MarkdownWrapper = styled.div`
   height: 100%;
-  width: 100%;
+  max-width: 650px;
   padding: 0 40px 0 40px;
-  overflow: scroll;
+`;
+
+const Markdown = styled.div`
+  color: #222222;
+  padding-bottom: 20px;
 `;
 
 export default ({ file }) => (
   <NoteViewWrapper>
-    <Markdown source={file} />
+    <MarkdownWrapper>
+      <Markdown
+        dangerouslySetInnerHTML={{ __html: MarkdownIt().render(file) }}
+      />
+    </MarkdownWrapper>
   </NoteViewWrapper>
 );

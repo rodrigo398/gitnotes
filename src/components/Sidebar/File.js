@@ -30,10 +30,9 @@ const FileButton = styled.button`
 `;
 
 const File = ({ projectId, child, onFileChange }) => {
-  const getFile = () => {
-    getFileAsync(projectId, child.path).then(data => {
-      onFileChange(data);
-    });
+  const getFile = async () => {
+    const data = await getFileAsync(projectId, child.path);
+    onFileChange(data);
   };
 
   return (
