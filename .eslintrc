@@ -1,6 +1,7 @@
 {
   "extends": ["react-app", "eslint:recommended", "plugin:prettier/recommended"],
   "rules": {
-    "no-console": 2
+    "no-console": 2,
+    "react/prop-types": [1, { "ignore": 0, "customValidators": 0 }]
   }
 }
