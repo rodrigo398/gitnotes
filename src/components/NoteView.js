@@ -7,7 +7,7 @@ const NoteViewWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  overflow: scroll;
+  overflow: auto;
 
   &::-webkit-scrollbar {
     display: none; // hidden on safari & chrome

@@ -46,7 +46,7 @@ const DefaultImage = styled.div`
   font-weight: 900;
   font-size: 16px;
   border-radius: 50%;
-  background-color: ${props => props.theme.defaultImageColor};
+  background-color: ${props => props.theme.white};
   color: ${colors.theme2};
   margin-right: 8px;
 `;
