@@ -11,7 +11,7 @@ const SidebarWrapper = styled.div`
   color: ${props => props.theme.white};
   padding: 0 8px;
   box-sizing: border-box;
-  overflow: scroll;
+  overflow: auto;
 `;
 
 const Sidebar = ({ projects, onFileChange }) => {
