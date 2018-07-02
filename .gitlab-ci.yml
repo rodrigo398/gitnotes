@@ -1,0 +1,16 @@
+image: node:10.4-alpine
+
+variables:
+  NETLIFYCTL_URL: https://github.com/netlify/netlifyctl/releases/download/v0.4.0/netlifyctl-linux-amd64-0.4.0.tar.gz 
+  NETLIFY_CLAIM_ID: "${CI_COMMIT_REF_NAME}"
+  CI: "true"
+
+netlify-preview:
+  script:
+    - npm install
+    - npm run lint
+    - npm test
+    - npm run build
+    - npm run deploy
+  except:
+    - master
