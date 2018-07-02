@@ -29,15 +29,17 @@ const FileButton = styled.button`
   }
 `;
 
-const File = ({ projectId, child, onFileChange }) => {
+const File = ({ projectId, child, onFileChange, theme }) => {
   const getFile = async () => {
     const data = await getFileAsync(projectId, child.path);
     onFileChange(data);
   };
 
   return (
-    <FileWrapper>
-      <FileButton onClick={getFile}>{child.name}</FileButton>
+    <FileWrapper theme={theme}>
+      <FileButton onClick={getFile} theme={theme}>
+        {child.name}
+      </FileButton>
     </FileWrapper>
   );
 };

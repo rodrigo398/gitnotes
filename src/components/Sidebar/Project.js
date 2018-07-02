@@ -98,15 +98,19 @@ class Project extends React.Component {
     if (avatarUrl) {
       return <ProjectImage src={avatarUrl} alt={name} />;
     }
-    return <DefaultImage>{name.charAt(0).toUpperCase()}</DefaultImage>;
+    return (
+      <DefaultImage theme={this.props.theme}>
+        {name.charAt(0).toUpperCase()}
+      </DefaultImage>
+    );
   };
 
   render() {
     const { projectExpanded } = this.state;
-    const { project } = this.props;
+    const { project, theme } = this.props;
     return (
       <div>
-        <ProjectHeader onClick={this.toggleProject}>
+        <ProjectHeader onClick={this.toggleProject} theme={theme}>
           {this.renderProjectIcon(project)}
           {project.name}
           <ArrowIcon src={arrowDownIcon} alt="arrow" open={projectExpanded} />

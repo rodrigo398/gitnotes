@@ -67,7 +67,7 @@ class Folder extends React.Component {
           {tree ? (
             this.props.parseBranch(tree)
           ) : (
-            <EmptyFolder>no markdown..</EmptyFolder>
+            <EmptyFolder theme={this.props.theme}>no markdown..</EmptyFolder>
           )}
         </FolderDiv>
       )
@@ -76,10 +76,10 @@ class Folder extends React.Component {
 
   render() {
     const { folderExpanded } = this.state;
-    const { child } = this.props;
+    const { child, theme } = this.props;
     return (
       <div>
-        <FolderButton onClick={this.toggleFolder}>
+        <FolderButton theme={theme} onClick={this.toggleFolder}>
           <ArrowIcon src={arrowDownIcon} alt="arrow" open={folderExpanded} />
           <p>{child.name}</p>
         </FolderButton>
