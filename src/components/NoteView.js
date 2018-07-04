@@ -33,9 +33,11 @@ class NoteView extends React.Component {
 
   getFile = () => {
     const id = this.props.match.params.projectId;
-    const path = id && this.props.location.pathname.substring(id.length + 1);
-
-    if (!path || !id) {
+    if (!id) {
+      return;
+    }
+    const path = this.props.location.pathname.substring(id.length + 1);
+    if (!path) {
       return;
     }
 
