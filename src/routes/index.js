@@ -23,7 +23,8 @@ export default () => (
       <Switch>
         <Route path="/login" render={props => <LoginPage />} />
         <PrivateRoute path="/settings" component={Settings} />
-        <PrivateRoute path="/:projectId/" component={NoteView} />
+        <PrivateRoute path="/:projectId" component={NoteView} />
+        <PrivateRoute path="/" component={NoteView} />
         <Route component={PageNotFound} />
       </Switch>
     </Layout>

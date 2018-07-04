@@ -28,7 +28,7 @@ const Markdown = styled.div`
 
 class NoteView extends React.Component {
   state = {
-    html: "Select A File to View.."
+    html: undefined
   };
 
   getFile = () => {
@@ -51,7 +51,9 @@ class NoteView extends React.Component {
     const prevPath = prevProps.location.pathname.substring(prevId.length + 1);
     const path = this.props.location.pathname.substring(id.length + 1);
 
-    if (prevPath !== path) {
+    if (!this.state.html) {
+      this.getFile();
+    } else if (prevPath !== path) {
       this.getFile();
     } else if (prevId !== id) {
       this.getFile();
@@ -63,7 +65,11 @@ class NoteView extends React.Component {
     return (
       <NoteViewWrapper>
         <MarkdownWrapper>
-          <Markdown dangerouslySetInnerHTML={{ __html: html }} />
+          {this.state.html ? (
+            <Markdown dangerouslySetInnerHTML={{ __html: html }} />
+          ) : (
+            <p>Select A File To View...</p>
+          )}
         </MarkdownWrapper>
       </NoteViewWrapper>
     );
