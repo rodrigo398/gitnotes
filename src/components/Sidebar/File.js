@@ -31,7 +31,6 @@ const FileButton = styled.button`
 
 const File = ({ projectId, child, history, theme }) => {
   const redirectToFile = () => {
-    console.log(projectId, child.path);
     history.push(`/${projectId}/${child.path}`);
   };
 

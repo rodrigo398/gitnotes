@@ -33,9 +33,13 @@ class NoteView extends React.Component {
 
   getFile = () => {
     const id = this.props.match.params.projectId;
-    let path = id && this.props.location.pathname.substring(id.length + 1);
+    const path = id && this.props.location.pathname.substring(id.length + 1);
 
-    return getFileAsync(id, path).then(data => {
+    if (!path || !id) {
+      return;
+    }
+
+    getFileAsync(id, path).then(data => {
       const html = MarkdownIt().render(data);
       this.setState({ html });
     });
@@ -49,11 +53,10 @@ class NoteView extends React.Component {
     const prevPath = prevProps.location.pathname;
     const path = this.props.location.pathname;
 
-    if (!this.state.html) {
-      this.getFile();
-    } else if (prevPath !== path) {
-      this.getFile();
+    if (this.state.html && prevPath === path) {
+      return;
     }
+    this.getFile();
   }
 
   render() {
