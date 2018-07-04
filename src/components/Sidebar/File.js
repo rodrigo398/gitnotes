@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { getFileAsync } from "../../api/gitlab/fileApi";
+import { withRouter } from "react-router-dom";
 
 const FileWrapper = styled.div`
   color: ${props => props.theme.fileWrapperColor};
@@ -29,19 +29,19 @@ const FileButton = styled.button`
   }
 `;
 
-const File = ({ projectId, child, onFileChange, theme }) => {
-  const getFile = async () => {
-    const data = await getFileAsync(projectId, child.path);
-    onFileChange(data);
+const File = ({ projectId, child, history, theme }) => {
+  const redirectToFile = () => {
+    console.log(projectId, child.path);
+    history.push(`/${projectId}/${child.path}`);
   };
 
   return (
     <FileWrapper theme={theme}>
-      <FileButton onClick={getFile} theme={theme}>
+      <FileButton onClick={redirectToFile} theme={theme}>
         {child.name}
       </FileButton>
     </FileWrapper>
   );
 };
 
-export default File;
+export default withRouter(File);

@@ -5,6 +5,8 @@ const fileEndpoint = (projectId, filePath) =>
 
 export const getFileAsync = async (projectId, filePath) => {
   // Encode file path to turn all "/" into "%2F"
+  console.log(filePath);
+
   const { data } = await axios.get(
     fileEndpoint(projectId, encodeURIComponent(filePath))
   );

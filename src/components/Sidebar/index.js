@@ -14,15 +14,11 @@ const SidebarWrapper = styled.div`
   overflow: auto;
 `;
 
-const Sidebar = ({ projects, onFileChange }) => {
+const Sidebar = ({ projects }) => {
   const renderProjects = () => {
     return projects.filter(project => project.enabled).map(project => {
       return (
-        <Project
-          project={project}
-          theme={sideBarTheme}
-          onFileChange={onFileChange}
-        />
+        <Project key={project.id} project={project} theme={sideBarTheme} />
       );
     });
   };
