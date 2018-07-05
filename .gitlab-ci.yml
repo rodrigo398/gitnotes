@@ -13,3 +13,5 @@ netlify-preview:
     - npm run deploy
   except:
     - master
+  after_script:
+    - node scripts/slack.js

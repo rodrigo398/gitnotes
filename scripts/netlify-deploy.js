@@ -1,6 +1,9 @@
 /*eslint no-console: "off"*/
 const axios = require("axios");
 const AdmZip = require("adm-zip");
+const { promisify } = require("util");
+const fs = require("fs");
+const writeFileAsync = promisify(fs.writeFile);
 
 // A wrapper around the netlify rest api.
 class NetlifyAPI {
@@ -189,6 +192,7 @@ Promise.resolve(
       await new Promise(resolve => setTimeout(resolve, 1000));
     }
 
+    await writeFileAsync("deploy-site", JSON.stringify(site));
     console.log(`Deployed to ${site.name} at ${site.ssl_url}`);
   })().catch(error => {
     console.log(error);
