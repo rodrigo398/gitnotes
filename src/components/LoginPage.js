@@ -48,8 +48,13 @@ class Login extends React.Component {
 Login.propTypes = {
   login: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
+<<<<<<< HEAD
   isAuthenticated: PropTypes.bool.isRequired,
   authenticationInProgress: PropTypes.bool.isRequired
+=======
+  isAuthenticated: PropTypes.func.isRequired,
+  authenticationInProgress: PropTypes.func.isRequired
+>>>>>>> Change Switch component to class component and added propTypes to component
 };
 
 const mapStateToProps = ({ authentication, user: { name, avatarUrl } }) => ({
