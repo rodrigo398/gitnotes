@@ -48,8 +48,8 @@ class Login extends React.Component {
 Login.propTypes = {
   login: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.func.isRequired,
-  authenticationInProgress: PropTypes.func.isRequired
+  isAuthenticated: PropTypes.bool.isRequired,
+  authenticationInProgress: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = ({ authentication, user: { name, avatarUrl } }) => ({

@@ -36,9 +36,9 @@ const SwitchButton = styled.span`
 
 class Switch extends React.Component {
   render() {
-    const { id, enabled, toggle } = this.props;
+    const { id, enabled, toggleProjectEdition } = this.props;
     return (
-      <SwitchWrapper enabled={enabled} onClick={() => toggle(id)}>
+      <SwitchWrapper enabled={enabled} onClick={() => toggleProjectEdition(id)}>
         <SwitchButton enabled={enabled} />
       </SwitchWrapper>
     );
@@ -48,7 +48,7 @@ class Switch extends React.Component {
 Switch.propTypes = {
   id: PropTypes.string.isRequired,
   enabled: PropTypes.bool.isRequired,
-  toggle: PropTypes.bool.isRequired
+  toggleProjectEdition: PropTypes.bool.isRequired
 };
 
 export default Switch;

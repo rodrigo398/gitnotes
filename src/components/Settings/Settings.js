@@ -20,7 +20,7 @@ const Settings = ({
             <Switch
               id={project.id}
               enabled={project.enabled}
-              toggle={toggleProjectEdition}
+              toggleProjectEdition={toggleProjectEdition}
             />
           </li>
         ))}
