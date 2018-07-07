@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../styles/styles";
+import PropTypes from "prop-types";
 
 const SwitchWrapper = styled.button`
   margin: 20px;
@@ -33,10 +34,21 @@ const SwitchButton = styled.span`
   transition: all ease 200ms;
 `;
 
-export default ({ id, enabled, toggle }) => {
-  return (
-    <SwitchWrapper enabled={enabled} onClick={() => toggle(id)}>
-      <SwitchButton enabled={enabled} />
-    </SwitchWrapper>
-  );
+class Switch extends React.Component {
+  render() {
+    const { id, enabled, toggle } = this.props;
+    return (
+      <SwitchWrapper enabled={enabled} onClick={() => toggle(id)}>
+        <SwitchButton enabled={enabled} />
+      </SwitchWrapper>
+    );
+  }
+}
+
+Switch.propTypes = {
+  id: PropTypes.string.isRequired,
+  enabled: PropTypes.bool.isRequired,
+  toggle: PropTypes.bool.isRequired
 };
+
+export default Switch;

@@ -5,6 +5,7 @@ import {
   authenticateUser,
   logoutUser
 } from "../state-management/authentication/authenticationActions";
+import PropTypes from "prop-types";
 
 class Login extends React.Component {
   _authenticate() {
@@ -43,6 +44,13 @@ class Login extends React.Component {
     );
   }
 }
+
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.func.isRequired,
+  authenticationInProgress: PropTypes.func.isRequired
+};
 
 const mapStateToProps = ({ authentication, user: { name, avatarUrl } }) => ({
   isAuthenticated: authentication.isAuthenticated,
