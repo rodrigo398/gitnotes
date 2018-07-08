@@ -34,21 +34,16 @@ const SwitchButton = styled.span`
   transition: all ease 200ms;
 `;
 
-class Switch extends React.Component {
-  render() {
-    const { id, enabled, toggleProjectEdition } = this.props;
-    return (
-      <SwitchWrapper enabled={enabled} onClick={() => toggleProjectEdition(id)}>
-        <SwitchButton enabled={enabled} />
-      </SwitchWrapper>
-    );
-  }
-}
+export const Switch = ({ id, enabled, toggleProjectEdition }) => {
+  return (
+    <SwitchWrapper enabled={enabled} onClick={() => toggleProjectEdition(id)}>
+      <SwitchButton enabled={enabled} />
+    </SwitchWrapper>
+  );
+};
 
 Switch.propTypes = {
   id: PropTypes.string.isRequired,
   enabled: PropTypes.bool.isRequired,
   toggleProjectEdition: PropTypes.bool.isRequired
 };
-
-export default Switch;
