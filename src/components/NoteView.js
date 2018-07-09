@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import MarkdownIt from "markdown-it";
+import PropTypes from "prop-types";
 import { getFileAsync } from "../api/gitlab/fileApi";
 
 const NoteViewWrapper = styled.div`
@@ -76,5 +77,16 @@ class NoteView extends React.Component {
     );
   }
 }
+
+NoteView.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      projectId: PropTypes.string
+    })
+  }).isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired
+  }).isRequired
+};
 
 export default NoteView;
