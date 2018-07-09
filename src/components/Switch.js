@@ -1,9 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-<<<<<<< HEAD
 import { colors } from "../styles/styles";
-=======
->>>>>>> Change Switch component to class component and added propTypes to component
 import PropTypes from "prop-types";
 
 const SwitchWrapper = styled.button`
