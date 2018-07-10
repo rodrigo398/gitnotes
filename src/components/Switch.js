@@ -34,7 +34,7 @@ const SwitchButton = styled.span`
   transition: all ease 200ms;
 `;
 
-export const Switch = ({ id, enabled, toggleProjectEdition }) => {
+const Switch = ({ id, enabled, toggleProjectEdition }) => {
   return (
     <SwitchWrapper enabled={enabled} onClick={() => toggleProjectEdition(id)}>
       <SwitchButton enabled={enabled} />
@@ -47,3 +47,5 @@ Switch.propTypes = {
   enabled: PropTypes.bool.isRequired,
   toggleProjectEdition: PropTypes.func.isRequired
 };
+
+export default Switch;
