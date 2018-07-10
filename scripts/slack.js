@@ -29,7 +29,6 @@ class Slack {
   async send_build_failure(branch, commit, job_url, author) {
     const short_commit = commit.substring(0, 10);
     const data = {
-      channel: "@Michael",
       attachments: [
         {
           fallback: `Build failed for ${branch}:${commit}, logs ${job_url}`,
